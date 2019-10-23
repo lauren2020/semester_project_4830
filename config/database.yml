@@ -9,27 +9,52 @@
 # And be sure to use new-style password hashing: #oNQzGd5TtsdOxtYqLdHk #<%= ENV['4830_DATABASE_PASSWORD_DEV'] %>
 #   https://dev.mysql.com/doc/refman/5.7/en/password-hashing.html
 #
+# default: &default
+#   adapter: mysql2
+#   encoding: utf8mb4
+#   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+# development:
+#   <<: *default
+#   database: fka5dkr7gz84547m
+#   username: mw6crp33t33r240u
+#   password: fmh9a1wbhgfaxk35
+#   host: s554ongw9quh1xjs.cbetxkdyhwsb.us-east-1.rds.amazonaws.com
+#   port: 3306
+
+# test:
+#   <<: *default
+#   database: semester_project_4830_test
+
+# production:
+#   <<: *default
+#   database: semester_project_4830_development
+#   username: root
+#   password: '@Qaz102938'
+#   host: ec2-18-191-191-99.us-east-2.compute.amazonaws.com
+#   port: 3306
+
 default: &default
-  adapter: mysql2
-  encoding: utf8mb4
+  adapter: postgresql
+  encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
 development:
   <<: *default
-  database: fka5dkr7gz84547m
-  username: mw6crp33t33r240u
-  password: fmh9a1wbhgfaxk35
-  host: s554ongw9quh1xjs.cbetxkdyhwsb.us-east-1.rds.amazonaws.com
-  port: 3306
+  database: zerospace_dev
+  username: admin
+  password: admin_prod_password
+  host: localhost
+  port: 5432
 
 test:
   <<: *default
-  database: semester_project_4830_test
+  database: find_my_device_app_test
 
 production:
   <<: *default
-  database: semester_project_4830_development
-  username: root
-  password: '@Qaz102938'
-  host: ec2-18-191-191-99.us-east-2.compute.amazonaws.com
-  port: 3306
+  database: zerospace_prod
+  username: admin
+  password: admin_dev_password
+  host: localhost
+  port: 5432
