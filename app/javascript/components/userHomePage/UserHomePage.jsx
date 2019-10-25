@@ -12,31 +12,8 @@ const UserHomePage = ({
 
 }) => {
     return (
-        // <Provider store={store}>
-            <h1>User Home Page Here</h1>
-        // </Provider>
+        <h1>User Home Page Here</h1>
     )
 }
 
 export default UserHomePage;
-
-// const mapDispatchToProps = () => {
-//     dispatchActions
-//   }
-
-// //   function mapStateToProps(state) {
-// //     return {
-// //       test: state.test
-// //     }
-// //   }
-
-// function mapStateToProps(state, ownProps) {
-//     const { visibilityFilter } = state
-//     const { id } = ownProps
-//     const todo = getTodoById(state, id)
-  
-//     // component receives additionally:
-//     return { todo, visibilityFilter }
-//   }
-  
-//   export default connect(selectors, mapStateToProps)(UserHomePage);
