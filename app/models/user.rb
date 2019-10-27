@@ -3,6 +3,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :journal_posts, inverse_of: :user
+  has_many :journal_comments, inverse_of: :user
 
   has_many :message_boards, inverse_of: :user
   has_many :posts, inverse_of: :user
