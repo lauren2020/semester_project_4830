@@ -42,10 +42,10 @@ default: &default
 development:
   <<: *default
   database: zerospace_dev
-  username: admin
-  password: admin_prod_password
-  host: localhost
-  port: 5432
+#  username: admin
+#  password: admin_prod_password
+#  host: localhost
+#  port: 5432
 
 test:
   <<: *default
