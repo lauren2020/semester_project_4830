@@ -1,14 +1,20 @@
 import React from "react"
 import PropTypes from "prop-types"
 
+import { Provider } from 'react-redux'
+import configureStore from '../configureStore'
+import HomePage from './HomePage'
+
+const store = configureStore();
+
 class HomeProvider extends React.Component {
   render () {
     return (
-      <React.Fragment>
-        <h1>HomeProvider Page</h1>
-      </React.Fragment>
+        <Provider store={store}>
+          <HomePage />
+        </Provider>
     );
   }
 }
 
-export default HomeProvider
+export default HomeProvider;
