@@ -23,6 +23,9 @@
 .addButton {
     margin: 30px;
     float: right;
+    position: absolute;
+    right: 0;
+    background-color: rgb(227, 227, 233);
 }
 
 .pendingInvitesButton {

@@ -24,10 +24,10 @@ const GroupRowItem = ({
                     <h2>{group.name}</h2>
                     <p>Members: {group.users.length}</p>
                 </div>
-                <BaseDivider {...{
+                {/* <BaseDivider {...{
                     color: "lightgray",
                     length: "70%"
-                }}></BaseDivider>
+                }}></BaseDivider> */}
                 <Button color="success" className="addButton">Invite People</Button>{' '}
             </div>
             {showPosts && <PostsList {...{

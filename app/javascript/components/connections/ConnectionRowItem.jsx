@@ -19,10 +19,10 @@ const ConnectionRowItem = ({
             <div className="horizontalLayout" onClick={() => toggleShowPost()}>
                 <img className="circularSquare" src={connection.profile_url} alt="..."/>
                 <h2>{connection.first_name} {connection.last_name}</h2>
-                <BaseDivider {...{
+                {/* <BaseDivider {...{
                     color: "lightgray",
                     length: "70%"
-                }}></BaseDivider>
+                }}></BaseDivider> */}
                 <Button color="success" className="addButton">Remove</Button>{' '}
             </div>
 
