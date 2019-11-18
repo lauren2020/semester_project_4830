@@ -2,6 +2,7 @@ import React from "react"
 import { connect } from 'react-redux'
 import { Button, Input, InputGroup, InputGroupAddon, InputGroupText, ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 
+import BaseDivider from '../shared/BaseDivider'
 import mapDispatchToProps from './dispatch'
 import mapStateToProps from './selectors'
 import styles from './styles'
@@ -24,6 +25,10 @@ const PrivacySettingsBase = ({
                   </InputGroup>
                   : <p className="settingValue">{value}</p>}
 
+                <BaseDivider {...{
+                    color: "lightgray",
+                    length: "70%"
+                }}></BaseDivider>
                 <Button color="warning" className="floatRight" onClick={() => {
                     setIsEditing(!isEditing);
                 }}>{isEditing ? "Save" : "Edit"}</Button>{' '}

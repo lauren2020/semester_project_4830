@@ -3,6 +3,7 @@ import { createSelector } from 'reselect'
 const currentUser = state => state.currentUser
 const getUserGroups = state => state.userGroups
 const getUserPosts = state => state.userPosts
+const groupSearchResults = state => state.groupSearchResults
 
 const getVisibleGroups = createSelector(
   [getUserGroups],

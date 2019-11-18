@@ -5,14 +5,20 @@ import Post from './Post'
 import BaseDivider from '../shared/BaseDivider'
 
 const PostsList = ({
-    posts
+    posts,
+    addComment,
+    addLike,
+    currentUser
 }) => {
     console.log(posts);
     const renderPost = (post) => {
         return (
             <>
                 <Post {...{
-                    post
+                    post,
+                    addComment,
+                    addLike,
+                    currentUser
                 }}></Post>
                 <BaseDivider></BaseDivider>
             </>

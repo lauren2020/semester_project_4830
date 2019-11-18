@@ -33,6 +33,14 @@
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
+.addCommentBox {
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin: 20px;
+}
+
 .horizontalLayoutLight {
     background-color: white;
     display: flex;
@@ -59,4 +67,13 @@
 
 .postBody {
     padding: 30px;
+}
+
+.comment {
+    padding-left: 30px;
+}
+
+.postButton {
+    margin-top: 10px;
+    margin-bottom: 10px;
 }

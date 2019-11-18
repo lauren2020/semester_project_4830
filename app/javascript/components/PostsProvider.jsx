@@ -9,7 +9,7 @@ import { users, posts } from './mockData'
 
 const currentUser = users[0];
 
-//const store = configureStore();
+// Replace with get feed from backend
 const getPosts = (postIds) => {
   const postObjects = [];
   postObjects.push(posts[0]);
@@ -18,6 +18,7 @@ const getPosts = (postIds) => {
   postObjects.push(posts[5]);
   return postObjects;
 }
+
 class PostsProvider extends React.Component {
   render () {
     const store = configureStore({

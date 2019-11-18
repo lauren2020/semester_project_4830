@@ -5,6 +5,9 @@ const mapDispatchToProps = dispatch => {
       onAddPost: body => {
           console.log("adding post");
         dispatch(addPost(body))
+      },
+      searchGroups: string => {
+        
       }
     }
 }

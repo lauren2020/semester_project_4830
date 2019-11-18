@@ -3,15 +3,19 @@ import React from "react"
 import styles from './styles';
 
 import BaseDivider from '../shared/BaseDivider'
+import { Button, Input, InputGroup, InputGroupAddon, InputGroupText, ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 
 const Post = ({
-    post
+    post,
+    addComment,
+    addLike,
+    currentUser
 }) => {
     const [showComments, setShowComments] = React.useState(false);
 
     const renderComment = (comment) => {
         return (
-            <div>
+            <div className="comment">
                 <h4>{comment.user.first_name} {comment.user.last_name}</h4>
                 <p>{comment.body}</p>
                 <BaseDivider {...{
@@ -28,6 +32,15 @@ const Post = ({
                     color: "lightgray"
                 }}></BaseDivider>
                 {comments.map(comment => renderComment(comment))}
+                <div className="horizontalLayoutLight">
+                    <InputGroup className="addCommentBox">
+                        <InputGroupAddon addonType="prepend">
+                            <InputGroupText>+</InputGroupText>
+                        </InputGroupAddon>
+                        <Input placeholder="Comment..." />
+                    </InputGroup>
+                    <Button className="postButton" onClick={() => addComment("test", post, currentUser)}>Post</Button>
+                </div>
             </div>
         )
     }
@@ -58,7 +71,7 @@ const Post = ({
             </div>
             <p  className="postBody">{post.body}</p>
             <div className="postFooter">
-                <p className="postFooterOption">Likes: {post.likes.length} </p>
+                <p className="postFooterOption" onClick={() => addLike(post)}>Likes: {post.likes.length} </p>
                 <p>||</p>
                 <p className="postFooterOption" onClick={() => setShowComments(!showComments)}>Comments: {post.comments.length}</p>
                 <p>||</p>

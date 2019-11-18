@@ -13,13 +13,18 @@ const PostsBase = ({
     currentUser,
     onAddPost,
     userPosts,
-    pageFilters
+    pageFilters,
+    addComment,
+    addLike
 }) => {
 
     return (
         <div>
             <PostsList {...{
-                    posts: userPosts
+                    posts: userPosts,
+                    addComment,
+                    addLike,
+                    currentUser
                 }}></PostsList>
         </div>
     )

@@ -2,12 +2,14 @@ import { createStore, applyMiddleware, combineReducers } from 'redux';
 import { middleWare, apiReducer, railsActions } from 'redux-rails'
 import { default as thunk } from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
+import update from 'immutability-helper';
 
 import {
     ADD_POST,
     ADD_COMMENT,
     SET_PAGE_FILTER,
-    PageFilters
+    PageFilters,
+    ADD_LIKE
 } from './actions';
 const { SHOW_ALL } = PageFilters
 
@@ -19,8 +21,17 @@ const initialState = {
     pageFilter: PageFilters.SHOW_ALL,
     userGroups: [],
     userConnections: [],
-    privacySettings: { defaultPostVisibility: "Only Me" }
+    privacySettings: { defaultPostVisibility: "Only Me" },
+    groupSearchResults: []
 };
+
+function groupSearchResults(state = [], action) {
+    switch (action.type) {
+        case 'SEARCH_GROUPS':
+        default:
+            return state;
+    }
+}
 
 function privacySettings(state = [], action) {
     switch (action.type) {
@@ -55,10 +66,34 @@ function currentUser(state = {}, action) {
 
 function userPosts(state = [], action) {
     switch (action.type) {
+        case ADD_LIKE:
+                var index = 0;
+                for (index = 0; index < state.length; index++) {
+                    if (state[index].id === action.post_id) {
+                        break;
+                    }
+                }
+            return update(state, { 
+                [index]: {
+                  likes: [...state[index].comments, action.user_id]
+                }
+            });
         case ADD_POST:
             return [...state, { id: 2, body: action.text, comments: [] }];
         case ADD_COMMENT:
-            return state;
+                var index = 0;
+                for (index = 0; index < state.length; index++) {
+                    if (state[index].id === action.post_id) {
+                        break;
+                    }
+                }
+
+            const newComment = {id: "6", date: "11-18-2019", post: action.post_id, body: action.text, user: action.user};
+            return update(state, { 
+                [index]: {
+                  comments: [...state[index].comments, newComment]
+                }
+            });
         default:
             return state;
     }
@@ -79,19 +114,9 @@ const rootReducer = combineReducers({
     userPosts,
     userGroups,
     userConnections,
-    privacySettings
+    privacySettings,
+    groupSearchResults
 })
-
-// export default function configureStore() {
-//     const store = createStore(
-//         rootReducer, 
-//         initialState,
-//         composeWithDevTools (
-//             applyMiddleware(thunk)
-//         )
-//     );
-//     return store;
-// }
 
 export default function configureStore(hydratedState = {}) {
     const store = createStore(
