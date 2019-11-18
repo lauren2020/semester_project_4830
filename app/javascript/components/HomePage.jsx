@@ -6,6 +6,7 @@ import mapStateToProps from './selectors'
 
 
 const HomePageBase = ({
+    currentUser,
     onAddPost,
     userPosts,
     pageFilters
@@ -16,15 +17,16 @@ const HomePageBase = ({
         )
     }
 
+    console.log("Base: ", currentUser);
+
   return (
       <>
-      <h1>Page Filters: {pageFilters}</h1>
-      {userPosts.map(post => renderPost(post))}
-      <div onClick={() => onAddPost("Test Add Post")}>
+        {/* <div className="addPostButton" onClick={() => onAddPost("Test Add Post")}>
           Add Post +
-      </div>
+        </div> */}
         <UserHomePage {...{
-            userPosts,
+            user: currentUser,
+            displayedPosts: userPosts,
             pageFilters
         }}></UserHomePage>
     </>

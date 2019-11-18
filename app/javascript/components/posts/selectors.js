@@ -16,7 +16,7 @@ const getVisiblePosts = createSelector(
 const mapStateToProps = state => {
   return {
     userPosts: getVisiblePosts(state),
-    currentUser: currentUser(state)
+    currentUser
   }
 }
 

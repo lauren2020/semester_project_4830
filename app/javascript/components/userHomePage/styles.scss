@@ -1,0 +1,95 @@
+
+.userHomePage {
+    padding: 10px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.postsHeader {
+    background-color: lightgray;
+}
+
+.addPostButton {
+    color: white;
+    background-color: blue;
+}
+
+.postFooter {
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    background-color: lightgray;
+}
+
+.postHeader {
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    background-color: lightgray;
+}
+
+.horizontalLayout {
+    background-color: lightgrey;
+    display: flex;
+    flex-direction: row;
+    margin: auto;
+    padding-left: 5px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.mainUserInfoBanner {
+    background-color: #4eaff5;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    display: flex;
+    flex-direction: row;
+    margin: auto;
+    padding: 10px;
+}
+
+.userInfo {
+    padding: 10px;
+}
+
+.circularProfile {
+    height: 150px;
+    width: 150px;
+    overflow: hidden;
+    object-fit: fill;
+    border-radius: 50%;
+    margin: 0;
+}
+
+.schoolsListHeader {
+    background-color: #f57914;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    padding: 10px;
+}
+
+.navigationBar {
+    background-color: #1490f5;
+    display: flex;
+    flex-direction: row;
+}
+
+.selectedNavigationButton {
+    display: flex;
+    background-color: lightskyblue;
+    justify-content: center;
+    padding: 10px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.navigationButton {
+    color: white;
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.postBodyField {
+    width: 400px;
+}
+
+.addPost {
+    padding-bottom: 30px;
+}
