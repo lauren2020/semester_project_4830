@@ -1,3 +1,16 @@
-<h1>Nav Bar Here</h1>
+<div class="mainNavBar">
+    <h1>Zero Space</h1>
+</div>
+
 <%= javascript_pack_tag 'application' %>
 <%= react_component("HomeProvider", {} ) %>
+
+<div>
+    <%= button_to "Feed", action: "feed" %>
+    <%= button_to "Groups", action: "groups" %>
+    <%= button_to "Connections", action: "connections" %>
+    <%= button_to "Privacy Settings", action: "privacy_settings" %>
+</div>
+
+<%= javascript_pack_tag 'application' %>
+<%= react_component("PostsProvider", {} ) %>

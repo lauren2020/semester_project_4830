@@ -1,0 +1,17 @@
+.circularSquare {
+    height: 50px;
+    width: 50px;
+    overflow: hidden;
+    border-radius: 50%;
+    margin: 0;
+    vertical-align: middle;
+    padding: 10px;
+}
+
+.horizontalLayout {
+    background-color: lightgrey;
+    display: flex;
+    flex-direction: row;
+    margin: auto;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}

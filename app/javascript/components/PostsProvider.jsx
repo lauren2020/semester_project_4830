@@ -3,7 +3,7 @@ import PropTypes from "prop-types"
 
 import { Provider } from 'react-redux'
 import configureStore from '../configureStore'
-import HomePage from './HomePage'
+import Posts from './posts/Posts'
 
 import { users, posts } from './mockData'
 
@@ -18,8 +18,7 @@ const getPosts = (postIds) => {
   postObjects.push(posts[5]);
   return postObjects;
 }
-console.log("Provider: ", currentUser);
-class HomeProvider extends React.Component {
+class PostsProvider extends React.Component {
   render () {
     const store = configureStore({
       currentUser,
@@ -27,11 +26,12 @@ class HomeProvider extends React.Component {
     });
     return (
         <Provider store={store}>
-          <HomePage {...{
-          }}/>
+          <Posts {...{
+              posts: getPosts([])
+          }}></Posts>
         </Provider>
     );
   }
 }
 
-export default HomeProvider;
+export default PostsProvider;

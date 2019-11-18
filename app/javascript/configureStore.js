@@ -16,8 +16,32 @@ const initialState = {
     userPosts: [
         {id: 1, body: "post initial", comments: []}
     ],
-    pageFilter: PageFilters.SHOW_ALL
+    pageFilter: PageFilters.SHOW_ALL,
+    userGroups: [],
+    userConnections: [],
+    privacySettings: {}
 };
+
+function privacySettings(state = [], action) {
+    switch (action.type) {
+        default:
+            return state;
+    }
+}
+
+function userConnections(state = [], action) {
+    switch (action.type) {
+        default:
+            return state;
+    }
+}
+
+function userGroups(state = [], action) {
+    switch (action.type) {
+        default:
+            return state;
+    }
+}
 
 function currentUser(state = {}, action) {
     switch (action.type) {
@@ -52,13 +76,27 @@ function pageFilter(state = SHOW_ALL, action) {
 const rootReducer = combineReducers({
     currentUser,
     pageFilter,
-    userPosts
+    userPosts,
+    userGroups,
+    userConnections,
+    privacySettings
 })
 
-export default function configureStore() {
+// export default function configureStore() {
+//     const store = createStore(
+//         rootReducer, 
+//         initialState,
+//         composeWithDevTools (
+//             applyMiddleware(thunk)
+//         )
+//     );
+//     return store;
+// }
+
+export default function configureStore(hydratedState = {}) {
     const store = createStore(
         rootReducer, 
-        initialState,
+        {...initialState, ...hydratedState},
         composeWithDevTools (
             applyMiddleware(thunk)
         )
