@@ -19,7 +19,7 @@ const initialState = {
     pageFilter: PageFilters.SHOW_ALL,
     userGroups: [],
     userConnections: [],
-    privacySettings: {}
+    privacySettings: { defaultPostVisibility: "Only Me" }
 };
 
 function privacySettings(state = [], action) {

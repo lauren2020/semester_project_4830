@@ -7,9 +7,9 @@
 }
 
 .postFooter {
-    background-color: white;
-    padding: 10px;
-    margin: 10px;
+    background-color: lightgray;
+    // padding: 10px;
+    // margin: 10px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
@@ -33,7 +33,30 @@
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
+.horizontalLayoutLight {
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.postIdentifierInfo {
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+    margin: 5px;
+}
+
 .post {
     justify-content: left;
     align-content: flex-start;
+}
+
+.postFooterOption {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.postBody {
+    padding: 30px;
 }

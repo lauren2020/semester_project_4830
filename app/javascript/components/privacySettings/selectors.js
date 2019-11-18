@@ -10,7 +10,7 @@ const getPrivacySettings = createSelector(
 
 const mapStateToProps = state => {
   return {
-    privacySettings: getPrivacySettings(state),
+    privacySettings: privacySettings(state),
     currentUser
   }
 }

@@ -39,7 +39,7 @@ const andy = {id: "10", profile_url: andyPicURL, first_name: "Andy", last_name: 
 export const users = [michael, holly, dwight, jim, pam, jan, phylis, stanley, robert, daryl, andy];
 
 const comment0 = {id: "0", date: "10-23-2019", post: "1", body: "He played great", user: michael};
-const comment1 = {id: "1", date: "10-24-2019", post: "0", body: "Thats cool", user: holly};
+const comment1 = {id: "1", date: "10-24-2019", post: "0", body: "It was amazing!", user: holly};
 const comment2 = {id: "2", date: "10-25-2019", post: "3", body: "Looking forward to going to the beach", user: pam}; 
 const comment3 = {id: "3", date: "10-25-2019", post: "3", body: "Its gonna be great man", user: daryl};
 
@@ -51,7 +51,8 @@ const post2 = {id: "2", date: "10-24-2019", user: dwight, body: "Bears. Beats. B
 const post3 = {id: "3", date: "10-25-2019", user: jim, body: "Athlead is opening a new office in Santa Barbara CA", comments: [comment2, comment3], likes: ["4", "9"], public: true, groups: [], people: []};
 const post4 = {id: "4", date: "10-26-2019", user: pam, body: "CeCes ballet recital today!", comments: [], likes: ["3", "0", "1"], public: true, groups: [], people: []};
 const post5 = {id: "5", date: "10-26-2019", user: andy, body: "Dont forget, my garden party is Friday! Dress code is connecticut casual", comments: [], likes: ["0"], public: false, groups: [group1], people: []};
+const post6 = {id: "6", date: "10-26-2019", user: michael, body: "You and I are going paintballing this weekend", comments: [], likes: ["0"], public: false, groups: [], people: [dwight]};
 
-export const posts = [post0, post1, post2, post3, post4, post5];
+export const posts = [post0, post1, post2, post3, post4, post5, post6];
 
 

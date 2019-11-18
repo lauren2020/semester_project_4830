@@ -13,7 +13,7 @@ const getConnections = (connectionIds) => {
   const connectionObjects = [];
   connectionObjects.push(users[1]);
   connectionObjects.push(users[2]);
-  return connectionObjects;
+  return users;
 }
 
 class ConnectionsProvider extends React.Component {

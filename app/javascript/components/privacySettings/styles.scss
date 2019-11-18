@@ -1,0 +1,27 @@
+
+.settingRow {
+    background-color: lightgray;
+    background-color: lightgrey;
+    display: flex;
+    flex-direction: row;
+    margin: auto;
+    padding: 10px;
+    justify-items: center;
+    position: relative;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.settingValue {
+    padding: 5px;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.settingValueEditing {
+    padding: 20px;
+}
+
+.floatRight {
+    padding: 5px;
+    float: right;
+}

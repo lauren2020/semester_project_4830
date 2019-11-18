@@ -1,6 +1,7 @@
 
 import React from "react"
 import { connect } from 'react-redux'
+import { Button } from 'reactstrap';
 
 import mapDispatchToProps from './dispatch'
 import mapStateToProps from './selectors'
@@ -17,7 +18,11 @@ const GroupsBase = ({
     console.log("userPosts", getGroupPosts());
     return (
         <div>
-            <h1>Groups</h1>
+            <div className="horizontalLayout">
+                <h1>Groups</h1>
+                <Button color="success" className="addButton">Add +</Button>{' '}
+                <Button color="success" className="pendingInvitesButton">Pending Invites</Button>{' '}
+            </div>
             <GroupsList {...{
                 groups: userGroups,
                 getGroupPosts
