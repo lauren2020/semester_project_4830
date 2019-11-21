@@ -1,0 +1,79 @@
+.postHeader {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    //position: relative;
+    //font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.postFooter {
+    background-color: lightgray;
+    // padding: 10px;
+    // margin: 10px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.circularSquare {
+    height: 50px;
+    width: 50px;
+    overflow: hidden;
+    border-radius: 50%;
+    margin: 0;
+    vertical-align: middle;
+    padding: 10px;
+}
+
+.horizontalLayout {
+    background-color: lightgrey;
+    //display: flex;
+    flex-direction: row;
+    //position: sticky;
+    //float: left;
+    //margin: auto;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.addCommentBox {
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin: 20px;
+}
+
+.horizontalLayoutLight {
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.postIdentifierInfo {
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+    margin: 5px;
+}
+
+.post {
+    justify-content: left;
+    align-content: flex-start;
+}
+
+.postFooterOption {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.postBody {
+    padding: 30px;
+}
+
+.comment {
+    padding-left: 30px;
+}
+
+.postButton {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}

@@ -1,18 +1,25 @@
 import React from "react"
-import { Provider, connect } from 'react-redux'
 
-import dispatchActions from '../dispatch'
-import selectors from '../selectors'
-
-import configureStore from '../../configureStore'
-
-const store = configureStore();
+import SearchBar from '../shared/SearchBar'
+import UserInfoBanner from './UserInfoBanner'
  
 const UserHomePage = ({
-
+    user,
+    displayedPosts
 }) => {
     return (
-        <h1>User Home Page Here</h1>
+        <div>
+            <UserInfoBanner {...{
+                user
+            }}>   
+            </UserInfoBanner>
+            {/* <SearchBar {...{
+
+            }}></SearchBar> */}
+            {/* <PostsList {...{
+                posts: displayedPosts
+            }}></PostsList> */}
+        </div>
     )
 }
 

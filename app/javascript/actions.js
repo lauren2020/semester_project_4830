@@ -4,7 +4,10 @@
 
 export const ADD_POST = 'ADD_POST'
 export const ADD_COMMENT = 'ADD_COMMENT'
+export const ADD_LIKE = 'ADD_LIKE'
 export const SET_PAGE_FILTER = 'SET_PAGE_FILTER'
+
+export const SEARCH_GROUPS = 'SEARCH_GROUPS'
 
 /*
  * other constants
@@ -25,8 +28,12 @@ export function addPost(text) {
   return { type: ADD_POST, text }
 }
 
-export function addCommentToPost(post, comment) {
-  return { type: ADD_COMMENT, comment }
+export function addCommentToPost(post, comment, user) {
+  return { type: ADD_COMMENT, text: comment, post_id: post.id, user }
+}
+
+export function addLikeToPost(post) {
+  return { type: ADD_LIKE }
 }
 
 export function setPageFilter(filter) {
