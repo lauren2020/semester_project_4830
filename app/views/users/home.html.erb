@@ -1,0 +1,33 @@
+<html style="height: 100%;">
+<head>
+<!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+  <title>Zerospace</title>
+</head>
+    <body style="min-height: 100%; height: 100vh">
+        <div class="mainNavBar" style="background-color: #00BCD4; color: #FFFFFF; padding: 10px; box-shadow: 0px 0px 8px 2px #000000; z-index: 2;">
+            <h1>Zero Space</h1>
+        </div>
+
+        <div style="z-index: 1;">
+            <%= javascript_pack_tag 'application' %>
+            <%= react_component("HomeProvider", {} ) %>
+        </div>
+
+        <div style="display:flex;flex-direction:row;width:100%;background-color:gray;">
+            <%= button_to "Feed", {:action => "feed"}, {:style => "color: white; background: #00BCD4; width: 25vw; height: 50px;"} %>
+            <%= button_to "Groups", {:action => "groups"}, {:style => "color: white; background: #00BCD4; width: 25vw; height: 50px;"} %>
+            <%= button_to "Connections", {:action => "connections"}, {:style => "color: white; background: #00BCD4; width: 25vw; height: 50px;"}  %>
+            <%= button_to "Privacy Settings", {:action => "privacy_settings"}, {:style => "color: white; background: #00BCD4; width: 25vw; height: 50px;"}  %>
+        </div>
+
+        <div id="content">
+            <%= render :file => @file %>
+        </div>
+    </body>
+</html>

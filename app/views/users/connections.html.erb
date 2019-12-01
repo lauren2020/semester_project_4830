@@ -1,16 +1,4 @@
-<div class="mainNavBar">
-    <h1>Zero Space</h1>
-</div>
 
-<%= javascript_pack_tag 'application' %>
-<%= react_component("HomeProvider", {} ) %>
-
-<div style="display:flex;flex-direction:row;width:100%;background-color:gray;">
-    <%= button_to "Feed", {:action => "feed"}, {:style => "color: white; background: gray; width: 24.5vw; height: 50px;"} %>
-    <%= button_to "Groups", {:action => "groups"}, {:style => "color: white; background: gray; width: 24.5vw; height: 50px;"} %>
-    <%= button_to "Connections", {:action => "connections"}, {:style => "color: white; background: lightgray; width: 24.5vw; height: 50px;"}  %>
-    <%= button_to "Privacy Settings", {:action => "privacy_settings"}, {:style => "color: white; background: gray; width: 24.5vw; height: 50px;"}  %>
-</div>
 
 <%= javascript_pack_tag 'application' %>
 <%= react_component("ConnectionsProvider", {} ) %>
