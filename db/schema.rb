@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_01_043853) do
+ActiveRecord::Schema.define(version: 2019_12_02_035902) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,10 +25,32 @@ ActiveRecord::Schema.define(version: 2019_12_01_043853) do
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
+  create_table "connections", id: false, force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "connection_id"
+    t.index ["connection_id", "user_id"], name: "index_connections_on_connection_id_and_user_id", unique: true
+    t.index ["user_id", "connection_id"], name: "index_connections_on_user_id_and_connection_id", unique: true
+  end
+
+  create_table "group_memberships", id: false, force: :cascade do |t|
+    t.bigint "message_board_id", null: false
+    t.bigint "user_id", null: false
+    t.index ["message_board_id", "user_id"], name: "index_group_memberships_on_message_board_id_and_user_id"
+    t.index ["user_id", "message_board_id"], name: "index_group_memberships_on_user_id_and_message_board_id"
+  end
+
   create_table "groups", force: :cascade do |t|
     t.string "profile_url"
     t.bigint "user_id"
+    t.string "name", default: "My Group", null: false
+    t.integer "members_count", default: 0, null: false
+    t.json "sent_invites", default: [], null: false, array: true
     t.index ["user_id"], name: "index_groups_on_user_id"
+  end
+
+  create_table "groups_users", id: false, force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "group_id", null: false
   end
 
   create_table "journal_comments", force: :cascade do |t|
@@ -55,7 +77,15 @@ ActiveRecord::Schema.define(version: 2019_12_01_043853) do
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "profile_url", default: "https://cdn.pixabay.com/photo/2016/04/15/18/05/computer-1331579_960_720.png"
     t.index ["user_id"], name: "index_message_boards_on_user_id"
+  end
+
+  create_table "message_boards_users", id: false, force: :cascade do |t|
+    t.bigint "message_board_id", null: false
+    t.bigint "user_id", null: false
+    t.index ["message_board_id"], name: "index_message_boards_users_on_message_board_id"
+    t.index ["user_id"], name: "index_message_boards_users_on_user_id"
   end
 
   create_table "posts", force: :cascade do |t|
@@ -81,6 +111,9 @@ ActiveRecord::Schema.define(version: 2019_12_01_043853) do
     t.string "profile_url", default: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png", null: false
     t.string "first_name", default: "", null: false
     t.string "last_name", default: "", null: false
+    t.json "sent_connection_requests", default: [], null: false, array: true
+    t.json "connection_requests", default: [], null: false, array: true
+    t.json "group_invites", default: [], null: false, array: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

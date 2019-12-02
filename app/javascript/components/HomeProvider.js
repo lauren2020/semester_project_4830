@@ -18,12 +18,13 @@ const getPosts = (postIds) => {
   postObjects.push(posts[5]);
   return postObjects;
 }
-console.log("Provider: ", currentUser);
+
 class HomeProvider extends React.Component {
   render () {
+    console.log("USER SENT:", this.props.user);
     const store = configureStore({
-      currentUser,
-      userPosts: getPosts(currentUser.posts),
+      currentUser: this.props.user,
+      userPosts: [] //getPosts(currentUser.posts),
     });
     return (
         <Provider store={store}>

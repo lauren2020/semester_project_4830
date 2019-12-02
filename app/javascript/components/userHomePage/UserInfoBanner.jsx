@@ -8,6 +8,7 @@ import AddPostForm from './AddPostForm'
 const UserInfoBanner = ({
     user
 }) => {
+    //{user.friends.length}
     const [addPostOpen, setAddPostOpen] = React.useState(false);
     return (
         <div>
@@ -15,7 +16,7 @@ const UserInfoBanner = ({
             <img className="circularProfile" src={user.profile_url} alt="..."/>
             <div className="userInfo">
                 <h1>{user.first_name} {user.last_name}</h1>
-                <p>Connections: {user.friends.length}</p>
+                <p>Connections: </p>
                 <Button color="secondary" onClick={() => setAddPostOpen(!addPostOpen)}>{addPostOpen ? "Cancel" : "Add Post"}</Button>
             </div>
         </div>

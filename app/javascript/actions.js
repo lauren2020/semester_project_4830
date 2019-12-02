@@ -8,6 +8,9 @@ export const ADD_LIKE = 'ADD_LIKE'
 export const SET_PAGE_FILTER = 'SET_PAGE_FILTER'
 
 export const SEARCH_GROUPS = 'SEARCH_GROUPS'
+export const CREATE_GROUP = 'CREATE_GROUP'
+
+export const IS_LOADING = 'IS_LOADING'
 
 /*
  * other constants
@@ -22,6 +25,14 @@ export const PageFilters = {
 /*
  * action creators
  */
+
+ export function setLoading(status) {
+  return { type: IS_LOADING, status }
+ }
+
+export function createGroup(user_id, name) {
+  return { type: CREATE_GROUP, user_id, name }
+}
 
 export function addPost(text) {
     console.log("Action Recieved: ", text);

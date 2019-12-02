@@ -12,8 +12,11 @@ class AuthenticationController < ApplicationController
     #     # request.set_header('X-Access-Token', 'testfromauth')
     #     #headers["X-Access-Token"] = command.result
     #     #render json: { auth_token: command.result }
-        #user = User.find_by_email(params[:email])
-        redirect_to :controller => 'users', :action => 'show', id: 1 #user.id #, token: command.result
+        user = User.find_by_email(params[:email])
+        puts "USER:"
+        puts user.first_name
+        puts user.id
+        redirect_to :controller => 'users', :action => 'show', id: user.id #, token: command.result
     #     #redirect_to action: 'show', id: @new_user.id
     #   else
     #     render json: { error: command.errors }, status: :unauthorized

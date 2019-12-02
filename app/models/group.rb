@@ -1,14 +1,14 @@
 class Group < ApplicationRecord
-    # devise :database_authenticatable, :registerable,
-    #        :recoverable, :rememberable, :validatable
-  
-    # has_many :journal_posts, inverse_of: :user
-    # has_many :journal_comments, inverse_of: :user
-  
-    # has_many :message_boards, inverse_of: :user
-    # has_many :posts, inverse_of: :user
-    # has_many :comments, inverse_of: :user
-  
-    # validates :username, uniqueness: true, allow_nil: true
+  before_save :set_members_count
     belongs_to :user
+    has_and_belongs_to_many :users
+
+  def set_members_count
+    if self.id == nil
+      self.members_count = 1
+      return
+    end
+    group = Group.find(self.id)
+    self.members_count = group.users.length + 1
   end
+end

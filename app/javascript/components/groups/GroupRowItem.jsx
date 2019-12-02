@@ -3,12 +3,19 @@ import BaseDivider from '../shared/BaseDivider'
 import styles from './styles'
 import { Button } from 'reactstrap';
 import PostsList from '../posts/PostsList'
+import InviteUserToGroupForm from './InviteUserToGroupForm'
 
 const GroupRowItem = ({
+    currentUser,
     group,
-    userVisiblePosts
+    userVisiblePosts,
+    togglePopup,
+    userConnections,
+    inviteUser
 }) => {
     const [showPosts, setShowPosts] = React.useState(false);
+    const [showInviteUsersForm, setShowInviteUsersForm] = React.useState(false);
+
     const toggleShowPost = () => {
         setShowPosts(!showPosts);
         console.log(showPosts);
@@ -22,14 +29,23 @@ const GroupRowItem = ({
                 <img className="circularSquare" src={group.profile_url} alt="..."/>
                 <div className="column">
                     <h2>{group.name}</h2>
-                    <p>Members: {group.users.length}</p>
+                    <p>Members: {group.members_count}</p>
                 </div>
                 {/* <BaseDivider {...{
                     color: "lightgray",
                     length: "70%"
                 }}></BaseDivider> */}
-                <Button color="success" className="addButton">Invite People</Button>{' '}
+                <Button color="success" className="invitePeopleButton" onClick={() => setShowInviteUsersForm(!showInviteUsersForm)}>{showInviteUsersForm ? "Close Invite" : "Invite People"}</Button>{' '}
             </div>
+            {showInviteUsersForm && <InviteUserToGroupForm {...{
+                inviting_user_id: currentUser.id,
+                group_id: group.id,
+                userConnections,
+                inviteUser,
+                onClose: () => {
+                    setShowInviteUsersForm(false)
+                }
+            }}></InviteUserToGroupForm>}
             {showPosts && <PostsList {...{
                 posts: userVisiblePosts
             }}></PostsList>}

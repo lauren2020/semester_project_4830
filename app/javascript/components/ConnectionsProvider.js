@@ -20,7 +20,7 @@ class ConnectionsProvider extends React.Component {
   render () {
     const store = configureStore({
       currentUser,
-      userConnections: getConnections(currentUser.friends),
+      userConnections: this.props.connections, //getConnections(currentUser.friends),
       userPosts: posts
     });
     return (

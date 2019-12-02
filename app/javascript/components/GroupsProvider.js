@@ -21,8 +21,8 @@ const getPosts = (postIds) => {
 class GroupsProvider extends React.Component {
   render () {
     const store = configureStore({
-      currentUser,
-      userGroups: currentUser.groups,
+      currentUser: this.props.user,
+      userGroups: this.props.groups,
       userPosts: getPosts()
     });
     return (

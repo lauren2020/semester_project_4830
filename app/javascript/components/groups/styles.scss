@@ -20,6 +20,14 @@
     position: relative;
 }
 
+.invitePeopleButton {
+    float: right;
+    position: absolute;
+    right: 0;
+    background-color: rgb(227, 227, 233);
+    margin-right: 30px;
+}
+
 .addButton {
     margin: 30px;
     float: right;
@@ -34,7 +42,18 @@
     margin-left: 10px;
 }
 
+.groupsHeader {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 10px;
+    padding-right: 10px;
+}
+
 .column {
     display: flex;
     flex-direction: column;
+}
+
+.addGroup {
+    padding: 30px;
 }

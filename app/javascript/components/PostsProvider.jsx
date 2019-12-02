@@ -23,12 +23,12 @@ class PostsProvider extends React.Component {
   render () {
     const store = configureStore({
       currentUser,
-      userPosts: getPosts(currentUser.posts),
+      userPosts: this.props.feed,
     });
     return (
         <Provider store={store}>
           <Posts {...{
-              posts: getPosts([])
+              posts: this.props.feed
           }}></Posts>
         </Provider>
     );

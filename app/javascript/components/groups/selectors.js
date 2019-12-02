@@ -1,8 +1,9 @@
 import { createSelector } from 'reselect'
 
-const currentUser = state => state.currentUser
+const getCurrentUser = state => state.currentUser
 const getUserGroups = state => state.userGroups
 const getUserPosts = state => state.userPosts
+const getUserConnections = state => state.userConnections
 const groupSearchResults = state => state.groupSearchResults
 
 const getVisibleGroups = createSelector(
@@ -18,8 +19,9 @@ const getGroupPosts = groupId => createSelector(
 const mapStateToProps = state => {
   return {
     userGroups: getVisibleGroups(state),
-    currentUser,
-    getGroupPosts
+    currentUser: getCurrentUser(state),
+    getGroupPosts,
+    userConnections: getUserConnections(state)
   }
 }
 
