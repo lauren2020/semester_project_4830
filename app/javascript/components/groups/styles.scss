@@ -18,6 +18,16 @@
 
 .rowItem {
     position: relative;
+    //margin: 10px;
+}
+
+.groupRowItemHeader {
+    padding: 10px;
+    background-color: lightgrey;
+    display: flex;
+    flex-direction: row;
+    margin: auto;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .invitePeopleButton {
@@ -25,7 +35,9 @@
     position: absolute;
     right: 0;
     background-color: rgb(227, 227, 233);
+    margin: 10px;
     margin-right: 30px;
+    margin-top: 20px;
 }
 
 .addButton {
@@ -52,8 +64,21 @@
 .column {
     display: flex;
     flex-direction: column;
+    padding-right: 15px;
+    margin-top: 10px;
 }
 
 .addGroup {
     padding: 30px;
+}
+
+.ownerTag {
+    margin: 15px;
+    padding: 10px;
+    color: darkgray;
+    border-radius: 10%;
+    border: darkgray;
+    border-color: darkgray;
+    border-width: 1px;
+    border-style: solid;
 }

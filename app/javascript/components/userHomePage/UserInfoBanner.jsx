@@ -16,7 +16,7 @@ const UserInfoBanner = ({
             <img className="circularProfile" src={user.profile_url} alt="..."/>
             <div className="userInfo">
                 <h1>{user.first_name} {user.last_name}</h1>
-                <p>Connections: </p>
+                <p>Connections: {user.connections_count}</p>
                 <Button color="secondary" onClick={() => setAddPostOpen(!addPostOpen)}>{addPostOpen ? "Cancel" : "Add Post"}</Button>
             </div>
         </div>

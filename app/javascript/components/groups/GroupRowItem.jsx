@@ -25,17 +25,16 @@ const GroupRowItem = ({
 
     return (
         <div className="rowItem">
-            <div className="horizontalLayout" onClick={() => toggleShowPost()}>
+            <div className="groupRowItemHeader" onClick={() => toggleShowPost()}>
                 <img className="circularSquare" src={group.profile_url} alt="..."/>
                 <div className="column">
                     <h2>{group.name}</h2>
                     <p>Members: {group.members_count}</p>
                 </div>
-                {/* <BaseDivider {...{
-                    color: "lightgray",
-                    length: "70%"
-                }}></BaseDivider> */}
-                <Button color="success" className="invitePeopleButton" onClick={() => setShowInviteUsersForm(!showInviteUsersForm)}>{showInviteUsersForm ? "Close Invite" : "Invite People"}</Button>{' '}
+                {currentUser.id == group.user_id && <div className="ownerTag">
+                    <h3>Owner</h3>
+                </div>}
+                <Button color="primary" className="invitePeopleButton" onClick={() => setShowInviteUsersForm(!showInviteUsersForm)}>{showInviteUsersForm ? "Close Invite" : "Invite People"}</Button>{' '}
             </div>
             {showInviteUsersForm && <InviteUserToGroupForm {...{
                 inviting_user_id: currentUser.id,

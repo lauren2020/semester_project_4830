@@ -23,6 +23,7 @@ class GroupsProvider extends React.Component {
     const store = configureStore({
       currentUser: this.props.user,
       userGroups: this.props.groups,
+      userConnections: this.props.connections,
       userPosts: getPosts()
     });
     return (

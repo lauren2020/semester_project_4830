@@ -16,14 +16,14 @@ const ConnectionRowItem = ({
 
     return (
         <div>
-            <div className="horizontalLayout" onClick={() => toggleShowPost()}>
+            <div className="connectionRowItemHeader" onClick={() => toggleShowPost()}>
                 <img className="circularSquare" src={connection.profile_url} alt="..."/>
                 <h2>{connection.first_name} {connection.last_name}</h2>
                 {/* <BaseDivider {...{
                     color: "lightgray",
                     length: "70%"
                 }}></BaseDivider> */}
-                <Button color="success" className="addButton">Remove</Button>{' '}
+                <Button color="primary" className="removeButton">Remove</Button>{' '}
             </div>
 
             {showPosts && <PostsList {...{

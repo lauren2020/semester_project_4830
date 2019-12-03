@@ -16,7 +16,7 @@ class GroupsController < ApplicationController
         puts "IN CREATE:"
         puts name
         puts user_id
-        @new_group = Group.new(:name => name, :user_id => user_id)
+        @new_group = Group.new(:name => name, :profile_url => profile_url, :user_id => user_id)
 
         if @new_group.save
             render json: @new_group
@@ -40,8 +40,25 @@ class GroupsController < ApplicationController
     end
 
     def add_member_to_group
-        @user = User.find_by_id(params[:user_id])
-        @group = Group.find_by_id(params[:id])
+        process_add_member_to_group(user_id: params[:user_id], group_id: params[:id])
+        # @user = User.find_by_id(params[:user_id])
+        # @group = Group.find_by_id(params[:id])
+
+        # @user.groups << @group
+        # @group.users << @user
+
+        # if @user.save && @group.save
+        #     render json: @group
+        # else
+        #     render json: {
+        #         error: "There was an error adding member to group!"
+        #     }, status: 422
+        # end
+    end
+
+    def process_add_member_to_group(user_id, group_id)
+        @user = User.find_by_id(user_id)
+        @group = Group.find_by_id(group_id)
 
         @user.groups << @group
         @group.users << @user
@@ -52,6 +69,39 @@ class GroupsController < ApplicationController
             render json: {
                 error: "There was an error adding member to group!"
             }, status: 422
+        end
+    end
+
+    def accept_invite
+        @group = Group.find_by_id(params[:group_id])
+        @invited_user = User.find_by_id(params[:invited_user_id])
+
+        valid_group_invites = Array(nil)
+        valid_user_invites = Array(nil)
+
+        @group.sent_invites.each do |invite|
+            if (invite["invited_user"]["id"] != @invited_user.id)
+                valid_group_invites << invite
+            end
+        end
+
+        @invited_user.group_invites.each do |invite|
+            if (invite["group"]["id"] != @group.id)
+                valid_user_invites << invite
+            end
+        end
+
+        @group.sent_invites = valid_group_invites
+        @invited_user.group_invites = valid_user_invites
+
+        if @group.save && @invited_user.save
+            user_id = @invited_user.id
+            group_id = @group.id
+           process_add_member_to_group(user_id, group_id)
+        else
+            render json: {
+                error: "There was an error accepting the invite."
+            }
         end
     end
 
@@ -83,7 +133,9 @@ class GroupsController < ApplicationController
         @invited_user.group_invites << invite
 
         if @group.save && @invited_user.save
-            render json: @group
+            render json: {
+                group: @group
+            }#@group
         else
             render json: {
                 error: "Unable to send invite."

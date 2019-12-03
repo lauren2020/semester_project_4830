@@ -32,6 +32,12 @@ Rails.application.routes.draw do
   patch 'user/:id/add_connection', to: 'users#add_connection'
   patch 'groups/:id/send_invite', to: 'groups#send_invite_to_group'
 
+  patch 'user/:inviting_user_id/send_connection_invite', to: 'users#send_connection_invite'
+  patch 'user/:inviting_user_id/send_connection_invite_by_username', to: 'users#send_connection_invite_by_username'
+  patch 'user/:invited_user_id/accept_connection_invite', to: 'users#accept_connection_invite'
+
+  patch 'groups/:group_id/accept_invite', to: 'groups#accept_invite'
+
   get 'groups/list_all', to: 'groups#all_groups'
   get 'users/list_all', to: 'users#list_all'
 end

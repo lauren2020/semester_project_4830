@@ -11,24 +11,21 @@ const mapDispatchToProps = dispatch => {
       searchGroups: string => {
         
       },
-      createGroup: (user_id, name) => {
+      createGroup: (user_id, name, profile_url) => {
         dispatch(setLoading(true))
-        axios.post(ApiHelper.CREATE_GROUP_ENDPOINT, { user_id, name })
+        axios.post(ApiHelper.CREATE_GROUP_ENDPOINT, { user_id, name, profile_url })
         .then(function (response) {
-          //dispatch(createGroup(response.data))
-            //dispatch(addNewDeviceSuccess(response.data.devices))
-            console.log("GROUP CREATED: ");// + response.data);
+            console.log("Success! " + response);
             dispatch(setLoading(false))
         })
         .catch(function (error) {
-            //dispatch(addNewDeviceFailed(error))
             console.log("error" + error);
             dispatch(setLoading(false))
         });
       },
-      acceptInvite: (group_id, user_id) => {
+      inviteUser: (group_id, inviting_user_id, invited_user_id) => {
         dispatch(setLoading(true))
-        axios.patch(ApiHelper.ADD_MEMBER_TO_GROUP_ENDPOINT(group_id), { user_id })
+        axios.patch(ApiHelper.INVITE_USER_TO_GROUP(group_id), { inviting_user_id, invited_user_id })
         .then(function (response) {
             console.log("SUCCES!", response);
             dispatch(setLoading(false))
@@ -38,9 +35,9 @@ const mapDispatchToProps = dispatch => {
             dispatch(setLoading(false))
         });
       },
-      inviteUser: (group_id, inviting_user_id, invited_user_id) => {
+      acceptInvite: (group_id, invited_user_id) => {
         dispatch(setLoading(true))
-        axios.patch(ApiHelper.INVITE_USER_TO_GROUP(group_id), { inviting_user_id, invited_user_id })
+        axios.patch(ApiHelper.ACCEPT_GROUP_INVITE_ENDPOINT(group_id), { invited_user_id })
         .then(function (response) {
             console.log("SUCCES!", response);
             dispatch(setLoading(false))

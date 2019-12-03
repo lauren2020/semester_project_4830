@@ -33,8 +33,6 @@ const GroupsBase = ({
         setShowPopup(show);
     }
 
-    console.log("User Connections Found: " + userConnections);
-
     const renderInviteRow = (invite) => {
         return (
             <div>
@@ -66,6 +64,9 @@ const GroupsBase = ({
                 <h2>Pending Invites</h2>
                 {currentUser.group_invites.map(invite => renderInviteRow(invite))}
             </div>}
+            <BaseDivider {...{
+                    color: "darkgray"
+                }}></BaseDivider>
             <GroupsList {...{
                 currentUser,
                 groups: userGroups,

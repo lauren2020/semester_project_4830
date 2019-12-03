@@ -8,19 +8,53 @@ import styles from './styles'
 
 import BaseDivider from '../shared/BaseDivider'
 import ConnectionsList from "./ConnectionsList"
+import AddConnectionForm from './AddConnectionsForm'
 
 const ConnectionsBase = ({
+    currentUser,
     userConnections,
-    getUserVisiblePostsForConnection
+    getUserVisiblePostsForConnection,
+    inviteUserToConnect,
+    inviteUserToConnectByUsername,
+    acceptConnectionInvite
 }) => {
-    console.log("Connections", userConnections);
+    const [showPendingInvites, setShowPendingInvites] = React.useState(false);
+    const [showAddConnection, setShowAddConnection] = React.useState(false);
+
+    const renderInviteRow = (invite) => {
+        return (
+            <div className="pendingConnectionRow" >
+                <img className="circularSquare" src={invite.inviting_user.profile_url} alt="..."/>
+                <h2 className="pendingConnectionName">{invite.inviting_user.name}</h2>
+                <Button className="acceptButton" color="success" onClick={() => {
+                    acceptConnectionInvite(invite.inviting_user.id, invite.invited_user.id);
+                    setShowPendingInvites(false);
+                }}>Accept</Button>{' '}
+            </div>
+        )
+    }
+
     return (
         <div>
             <div className="horizontalLayout">
-                <h1>Connections</h1>
-                <Button color="success" className="addButton">Add +</Button>{' '}
-                <Button color="success" className="pendingInvitesButton">Pending Requests</Button>{' '}
+                <h1 className="connectionsTitle">Connections</h1>
+                <Button color="success" className="addButton" onClick={() => setShowAddConnection(!showAddConnection)}>{showAddConnection ? "Close" : "Add +"}</Button>{' '}
+                <Button color="success" className="pendingInvitesButton" onClick={() => setShowPendingInvites(!showPendingInvites)}>{showPendingInvites ? "Close Requests" : "Pending Requests"}</Button>{' '}
             </div>
+            {showAddConnection && <AddConnectionForm {...{
+                userId: currentUser.id,
+                inviteUserToConnectByUsername,
+                onClose: () => {
+                    setShowAddConnection(false)
+                }
+            }}></AddConnectionForm>}
+            {showPendingInvites && <div>
+                <h2>Pending Requests</h2>
+                {currentUser.connection_requests.map(invite => renderInviteRow(invite))}
+            </div>}
+            <BaseDivider {...{
+                    color: "darkgray"
+                }}></BaseDivider>
             <ConnectionsList {...{
                 connections: userConnections,
                 getUserVisiblePostsForConnection
