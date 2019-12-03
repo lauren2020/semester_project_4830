@@ -5,7 +5,10 @@ import PostsList from '../posts/PostsList'
 import { Button } from 'reactstrap';
 
 const ConnectionRowItem = ({
+    currentUser,
     connection,
+    addComment,
+    addLike,
     userVisiblePosts
 }) => {
     const [showPosts, setShowPosts] = React.useState(false);
@@ -27,7 +30,10 @@ const ConnectionRowItem = ({
             </div>
 
             {showPosts && <PostsList {...{
-                posts: userVisiblePosts
+                posts: userVisiblePosts,
+                currentUser,
+                addComment,
+                addLike
             }}></PostsList>}
             <BaseDivider></BaseDivider>
         </div>

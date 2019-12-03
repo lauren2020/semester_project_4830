@@ -19,7 +19,10 @@ const GroupsBase = ({
     getGroupPosts,
     createGroup,
     acceptInvite,
-    inviteUser
+    inviteUser,
+    addComment,
+    addLike,
+    groupPosts
 }) => {
     const [showPendingInvites, setShowPendingInvites] = React.useState(false);
     const [showAddGroup, setShowAddGroup] = React.useState(false);
@@ -73,7 +76,10 @@ const GroupsBase = ({
                 getGroupPosts,
                 togglePopup,
                 userConnections,
-                inviteUser
+                inviteUser,
+                addComment,
+                addLike,
+                groupPosts
             }}></GroupsList>
         </div>
     )

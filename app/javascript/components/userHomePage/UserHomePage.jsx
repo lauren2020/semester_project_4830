@@ -5,20 +5,25 @@ import UserInfoBanner from './UserInfoBanner'
  
 const UserHomePage = ({
     user,
-    displayedPosts
+    displayedPosts,
+    postToUser,
+    postToGroup,
+    userConnections,
+    userGroups
 }) => {
     return (
         <div>
             <UserInfoBanner {...{
-                user
+                user,
+                postToUser,
+                postToGroup,
+                userConnections,
+                userGroups
             }}>   
             </UserInfoBanner>
             {/* <SearchBar {...{
 
             }}></SearchBar> */}
-            {/* <PostsList {...{
-                posts: displayedPosts
-            }}></PostsList> */}
         </div>
     )
 }

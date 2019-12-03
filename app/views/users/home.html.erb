@@ -17,7 +17,7 @@
 
         <div style="z-index: 1;">
             <%= javascript_pack_tag 'application' %>
-            <%= react_component("HomeProvider", {user: @user} ) %>
+            <%= react_component("HomeProvider", {user: @user, groups: @groups, connections: @connections} ) %>
         </div>
 
         <div style="display:flex;flex-direction:row;width:100%;background-color:gray; box-shadow: 0px 5px 8px 1px #757575; z-index: 2; position: relative;">

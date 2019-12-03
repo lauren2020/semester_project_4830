@@ -16,7 +16,10 @@ const ConnectionsBase = ({
     getUserVisiblePostsForConnection,
     inviteUserToConnect,
     inviteUserToConnectByUsername,
-    acceptConnectionInvite
+    acceptConnectionInvite,
+    addComment,
+    addLike,
+    connectionPosts
 }) => {
     const [showPendingInvites, setShowPendingInvites] = React.useState(false);
     const [showAddConnection, setShowAddConnection] = React.useState(false);
@@ -57,7 +60,11 @@ const ConnectionsBase = ({
                 }}></BaseDivider>
             <ConnectionsList {...{
                 connections: userConnections,
-                getUserVisiblePostsForConnection
+                getUserVisiblePostsForConnection,
+                connectionPosts,
+                addComment,
+                addLike,
+                currentUser
             }}></ConnectionsList>
         </div>
     )

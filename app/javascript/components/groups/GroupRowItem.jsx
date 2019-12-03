@@ -11,6 +11,8 @@ const GroupRowItem = ({
     userVisiblePosts,
     togglePopup,
     userConnections,
+    addComment,
+    addLike,
     inviteUser
 }) => {
     const [showPosts, setShowPosts] = React.useState(false);
@@ -46,7 +48,10 @@ const GroupRowItem = ({
                 }
             }}></InviteUserToGroupForm>}
             {showPosts && <PostsList {...{
-                posts: userVisiblePosts
+                posts: userVisiblePosts,
+                currentUser,
+                addComment,
+                addLike
             }}></PostsList>}
             <BaseDivider></BaseDivider>
         </div>

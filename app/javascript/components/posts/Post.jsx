@@ -12,12 +12,13 @@ const Post = ({
     currentUser
 }) => {
     const [showComments, setShowComments] = React.useState(false);
+    const [commentBody, setCommentBody] = React.useState("");
 
     const renderComment = (comment) => {
         return (
             <div className="comment">
                 <h4>{comment.user.first_name} {comment.user.last_name}</h4>
-                <p>{comment.body}</p>
+                <p>{comment.content.body}</p>
                 <BaseDivider {...{
                     color: "lightgray"
                 }}></BaseDivider>
@@ -37,9 +38,9 @@ const Post = ({
                         <InputGroupAddon addonType="prepend">
                             <InputGroupText>+</InputGroupText>
                         </InputGroupAddon>
-                        <Input placeholder="Comment..." />
+                        <Input value={commentBody} onChange={e => setCommentBody(e.target.value)} placeholder="Comment..." />
                     </InputGroup>
-                    <Button className="postButton" onClick={() => addComment("test", post, currentUser)}>Post</Button>
+                    <Button className="postButton" onClick={() => addComment(commentBody, post.content.id, currentUser.id)}>Post</Button>
                 </div>
             </div>
         )
@@ -57,25 +58,25 @@ const Post = ({
                 
                         <div className="horizontalLayoutLight">
                             <p>{post.date} : </p>
-                            {post.public
+                            {post.shared_to_group != null && post.shared_to_group == "PUBLIC"
                                 ? <p>Public</p>
-                                : post.groups.length > 0
-                                    ? <p>{post.groups[0].name}</p>
-                                    : post.people.length > 0
-                                        ? <p>{post.people[0].first_name} {post.people[0].last_name}</p>
+                                : post.shared_to_group != null
+                                    ? <p>{post.shared_to_group.name}</p>
+                                    : post.shared_to_user != null
+                                        ? <p>{post.shared_to_user.first_name} {post.shared_to_user.last_name}</p>
                                         : <p>Only Me</p>}
                         </div>
                     </div>
 
                 </div>
             </div>
-            <p  className="postBody">{post.body}</p>
+            <p  className="postBody">{post.content.body}</p>
             <div className="postFooter">
-                <p className="postFooterOption" onClick={() => addLike(post)}>Likes: {post.likes.length} </p>
+                <p className="postFooterOption" onClick={() => addLike(post.content.id, currentUser.id)}>Likes: {post.content.likes.length} </p>
                 <p>||</p>
                 <p className="postFooterOption" onClick={() => setShowComments(!showComments)}>Comments: {post.comments.length}</p>
-                <p>||</p>
-                <p className="postFooterOption">Remove From Visibility</p>
+                {/* <p>||</p>
+                <p className="postFooterOption">Remove From Visibility</p> */}
             </div>
             {showComments && renderCommentsSection(post.comments)}
         </div>

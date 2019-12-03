@@ -11,10 +11,9 @@ class UsersController < ApplicationController
     def show
         show_user(:id => params[:id])
     end
-
+    
     def show_user(id)
-        @user = User.find_by_id(params[:id])
-        redirect_to :controller => 'users', :action => 'feed', params: {id: id}
+        redirect_to("http://localhost:4000/user/" + id[:id].to_s + "/feed", {})
     end
 
     def update
@@ -41,12 +40,51 @@ class UsersController < ApplicationController
         redirect_to root_path() #, :action => '/'
     end
 
+    def map_comments(comments)
+        @mapped_comments = []
+        comments.each do |comment|
+            comment_object = {
+                content: comment,
+                user: {
+                    first_name: comment.user.first_name,
+                    last_name: comment.user.last_name,
+                    profile_url: comment.user.profile_url
+                },
+                date: comment.created_at
+            }
+            @mapped_comments << comment_object
+        end
+        return @mapped_comments
+    end
+
+    def map_posts(posts)
+        @mapped_posts = []
+        posts.each do |post|
+            post_object = {
+                content: post,
+                user: {
+                    first_name: post.user.first_name,
+                    last_name: post.user.last_name,
+                    profile_url: post.user.profile_url
+                },
+                date: post.created_at,
+                shared_to_group: post.shared_to_group,
+                shared_to_user: post.shared_to_user,
+                comments: map_comments(post.comments)
+            }
+            @mapped_posts << post_object
+        end
+        return @mapped_posts
+    end
+
     def feed
         @user = User.find_by_id(params[:id])
-        #TODO: Calculate user feed
-        post0 = {id: "0", date: "10-22-2019", user: {first_name: "Michael", last_name: "Scott", profile_url: "https://thenypost.files.wordpress.com/2019/06/the-office-1390.jpg?quality=90&strip=all&w=618&h=410&crop=1"}, body: "Colorado has been amazing, hiking with holly in the rockies this weekend", comments: [], likes: ["1"], public: true, groups: [], people: []}
-  
-        @feed = [post0]
+        @feed = map_posts(@user.posts) 
+
+        owned_groups = Group.where(:user_id => @user.id)
+        groups_joined = @user.groups
+        @groups = owned_groups | groups_joined
+        @connections = @user.connections
 
         @file = "users/feed"
         respond_to do |format|
@@ -61,6 +99,13 @@ class UsersController < ApplicationController
         @groups = owned_groups | groups_joined
         @connections = @user.connections
 
+        @group_posts = {}
+        
+        @groups.each do |group|
+            @selected_posts = map_posts(Array(Post.where(:shared_to_group => group)))
+            @group_posts[group.id] = @selected_posts
+        end
+
         @file = "users/groups"
         respond_to do |format|
             format.html { render :file => "users/home", status: 200 }
@@ -69,9 +114,18 @@ class UsersController < ApplicationController
     
     def connections
         @user = User.find_by_id(params[:id])
-        puts "User In Connections:"
-        puts @user.first_name
+
+        owned_groups = Group.where(:user_id => @user.id)
+        groups_joined = @user.groups
+        @groups = owned_groups | groups_joined
         @connections = @user.connections
+
+        @connection_posts = {}
+
+        @connections.each do |connection|
+            @selected_posts = Post.where(:shared_to_user => connection, :user => @user) | Post.where(:shared_to_user => @user, :user => connection)
+            @connection_posts[connection.id] = map_posts(Array(@selected_posts))
+        end
 
         @file = "users/connections"
         respond_to do |format|
@@ -82,6 +136,11 @@ class UsersController < ApplicationController
     def privacy_settings
         @user = User.find_by_id(params[:id])
         @privacy_settings = []
+        
+        owned_groups = Group.where(:user_id => @user.id)
+        groups_joined = @user.groups
+        @groups = owned_groups | groups_joined
+        @connections = @user.connections
 
         @file = "users/privacy_settings"
         respond_to do |format|

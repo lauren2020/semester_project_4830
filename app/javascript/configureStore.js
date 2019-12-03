@@ -22,8 +22,24 @@ const initialState = {
     userGroups: [],
     userConnections: [],
     privacySettings: { defaultPostVisibility: "Only Me" },
-    groupSearchResults: []
+    groupSearchResults: [],
+    groupPosts: {},
+    connectionPosts: {}
 };
+
+function connectionPosts(state = {}, action) {
+    switch (action.type) {
+        default:
+            return state;
+    }
+}
+
+function groupPosts(state = {}, action) {
+    switch (action.type) {
+        default:
+            return state;
+    }
+}
 
 function groupSearchResults(state = [], action) {
     switch (action.type) {
@@ -115,7 +131,9 @@ const rootReducer = combineReducers({
     userGroups,
     userConnections,
     privacySettings,
-    groupSearchResults
+    groupSearchResults,
+    groupPosts,
+    connectionPosts
 })
 
 export default function configureStore(hydratedState = {}) {

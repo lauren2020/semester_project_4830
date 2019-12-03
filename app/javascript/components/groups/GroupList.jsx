@@ -10,8 +10,12 @@ const GroupList = ({
     getGroupPosts,
     togglePopup,
     userConnections,
-    inviteUser
+    inviteUser,
+    addComment,
+    addLike,
+    groupPosts
 }) => {
+    console.log("GROUP POSTS IN GROUPS LIST", groupPosts);
     const renderGroup = (group) => {
         // var filteredPosts = posts.filter(function (el) {
         //     return (el.groups.length > 0 && el.groups[0].id == group.id);
@@ -21,9 +25,11 @@ const GroupList = ({
             <GroupRowItem {...{
                 currentUser,
                 group,
-                userVisiblePosts: [],
+                userVisiblePosts: groupPosts[group.id],
                 togglePopup,
                 userConnections,
+                addComment,
+                addLike,
                 inviteUser
             }}></GroupRowItem>
         )

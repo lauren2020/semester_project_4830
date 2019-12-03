@@ -17,6 +17,9 @@ class User < ApplicationRecord
   has_many :connection_associations, :class_name => 'Connection'
   has_many :connections, :through => :connection_associations
 
+  has_many :posts
+  
+
   validates :username, uniqueness: true, allow_nil: true
 
   def set_connections_count

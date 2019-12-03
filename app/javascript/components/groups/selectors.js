@@ -5,6 +5,7 @@ const getUserGroups = state => state.userGroups
 const getUserPosts = state => state.userPosts
 const getUserConnections = state => state.userConnections
 const groupSearchResults = state => state.groupSearchResults
+const groupPosts = state => state.groupPosts
 
 const sortByGroupName = () => {
   const property = "name"
@@ -23,8 +24,8 @@ const getSortedGroups = createSelector(
 )
 
 const getGroupPosts = groupId => createSelector(
-    [getUserPosts],
-    (posts) => posts.filter(groups.length > 0)
+    [groupPosts],
+    (posts) => posts //.filter(groups.length > 0)
 )
 
 const mapStateToProps = state => {
@@ -32,6 +33,7 @@ const mapStateToProps = state => {
     userGroups: getSortedGroups(state),
     currentUser: getCurrentUser(state),
     getGroupPosts,
+    groupPosts: groupPosts(state),//getGroupPosts(state),
     userConnections: getUserConnections(state)
   }
 }

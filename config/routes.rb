@@ -40,4 +40,15 @@ Rails.application.routes.draw do
 
   get 'groups/list_all', to: 'groups#all_groups'
   get 'users/list_all', to: 'users#list_all'
+
+  ###### Posts #######
+  post 'user/:user_id/post_to_group', to: 'postits#post_to_group'
+  post 'user/:user_id/post_to_user', to: 'postits#post_to_user'
+  post 'user/:user_id/comment_on_post', to: 'postits#comment_on_post'
+
+  patch 'user/:user_id/like_post', to: 'postits#like_post'
+  patch 'user/:user_id/comment_on_post', to: 'postits#comment_on_post'
+
+  delete 'posts/:post_id/delete', to: 'postits#remove_post'
+  get 'posts/list_all', to: 'postits#all_posts'
 end
