@@ -48,6 +48,8 @@ Rails.application.routes.draw do
   patch 'user/:user_id/like_post', to: 'postits#like_post'
   patch 'user/:user_id/comment_on_post', to: 'postits#comment_on_post'
 
+  patch 'user/:user_id/change_privacy_settings', to: 'users#change_privacy_settings'
+
   delete 'posts/:post_id/delete', to: 'postits#remove_post'
   get 'posts/list_all', to: 'postits#all_posts'
 end

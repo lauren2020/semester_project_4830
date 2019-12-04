@@ -10,5 +10,6 @@ export const ApiHelper = {
     POST_TO_USER_ENDPOINT: id => baseEndpoint + "user/" + id + "/post_to_user",
     POST_TO_GROUP_ENDPOINT: id => baseEndpoint + "user/" + id + "/post_to_group",
     ADD_LIKE_TO_POST_ENDPOINT: id => baseEndpoint + "user/" + id + "/like_post",
-    ADD_COMMENT_TO_POST_ENDPOINT: id => baseEndpoint + "user/" + id + "/comment_on_post"
+    ADD_COMMENT_TO_POST_ENDPOINT: id => baseEndpoint + "user/" + id + "/comment_on_post",
+    CHANGE_USER_PRIVACY_SETTINGS_ENDPOINT: id => baseEndpoint + "user/" + id + "/change_privacy_settings"
   }

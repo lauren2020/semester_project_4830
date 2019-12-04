@@ -270,4 +270,44 @@ class UsersController < ApplicationController
             render plain: "There was an error adding connection!"
         end
     end
+
+    def change_privacy_settings 
+        defaultPostVisibility, allowConnectionToViewInCommon, allowUsersToSearchProfile, allowConnectionsToAddMeToGroup, defaultAllowOthersInGroupToViewProfile = params.values_at :defaultPostVisibility, :allowConnectionToViewInCommon, :allowUsersToSearchProfile, :allowConnectionsToAddMeToGroup, :defaultAllowOthersInGroupToViewProfile
+        
+        puts "FOUND:"
+        puts defaultPostVisibility
+        puts allowConnectionToViewInCommon
+        puts allowUsersToSearchProfile
+        puts allowConnectionsToAddMeToGroup
+        puts defaultAllowOthersInGroupToViewProfile
+        @user = User.find_by_id(params[:user_id])
+        if (defaultPostVisibility != nil)
+            puts "defaultPostVisibility"
+            @user.privacy_settings["defaultPostVisibility"] = defaultPostVisibility
+        end
+        if (allowConnectionToViewInCommon != nil)
+            puts "2"
+            @user.privacy_settings["allowConnectionToViewInCommon"] = allowConnectionToViewInCommon
+        end
+        if (allowUsersToSearchProfile != nil)
+            puts "3"
+            @user.privacy_settings["allowUsersToSearchProfile"] = allowUsersToSearchProfile
+        end
+        if (allowConnectionsToAddMeToGroup != nil)
+            puts "4"
+            @user.privacy_settings["allowConnectionsToAddMeToGroup"] = allowConnectionsToAddMeToGroup
+        end
+        if (defaultAllowOthersInGroupToViewProfile != nil)
+            puts "5"
+            @user.privacy_settings["defaultAllowOthersInGroupToViewProfile"] = defaultAllowOthersInGroupToViewProfile
+        end
+
+        if @user.save
+            render json: @user
+        else
+            render json: {
+                error: "Could not update privacy settings"
+            }
+        end
+    end
 end

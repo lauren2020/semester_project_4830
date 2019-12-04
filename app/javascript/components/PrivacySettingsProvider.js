@@ -13,7 +13,7 @@ const currentUser = users[0];
 class PrivacySettingsProvider extends React.Component {
   render () {
     const store = configureStore({
-      currentUser,
+      currentUser: this.props.user,
       privacySettings: this.props.privacy_settings
     });
     return (

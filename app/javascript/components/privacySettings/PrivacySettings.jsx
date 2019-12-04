@@ -8,18 +8,23 @@ import mapStateToProps from './selectors'
 import styles from './styles'
 
 const PrivacySettingsBase = ({
+    currentUser,
+    changePrivacySettings,
     privacySettings
 }) => {
-    console.log(privacySettings)
+    const callChangePrivacySetting = (settings) => {
+        changePrivacySettings(currentUser.id, { defaultPostVisibility: settings.defaultPostVisibility, allowConnectionToViewInCommon: settings.allowConnectionToViewInCommon, allowUsersToSearchProfile: settings.allowUsersToSearchProfile, allowConnectionsToAddMeToGroup: settings.allowConnectionsToAddMeToGroup, defaultAllowOthersInGroupToViewProfile: settings.defaultAllowOthersInGroupToViewProfile } );
+    }
 
-    const renderPrivacySettingRow = (label, value, setValue) => {
+    const renderPrivacySettingRow = (label, value, key) => {
         const [isEditing, setIsEditing] = React.useState(false);
+        const [newValue, setNewValue] = React.useState("");
         return (
             <div className="settingRow">
                 <h4 className="">{label}: </h4>
                 {isEditing 
                     ? <InputGroup className="settingValueEditing">
-                    <Input placeholder={value} />
+                    <Input value={newValue} onChange={e => setNewValue(e.target.value)} placeholder={value} />
                   </InputGroup>
                   : <p className="settingValue">{value}</p>}
 
@@ -29,6 +34,13 @@ const PrivacySettingsBase = ({
                 }}></BaseDivider>
                 <Button color="warning" className="floatRight" onClick={() => {
                     setIsEditing(!isEditing);
+                    if (isEditing) {
+                        console.log("Key: ", key);
+                        console.log("Value: ", newValue);
+                        let sendValues = {};
+                        sendValues[key] = newValue;
+                        callChangePrivacySetting(sendValues);
+                    }
                 }}>{isEditing ? "Save" : "Edit"}</Button>{' '}
             </div>
         )
@@ -66,11 +78,11 @@ const PrivacySettingsBase = ({
 
     return (
         <div>
-            {renderPrivacySettingRow("Default Post Visibility", privacySettings.defaultPostVisibility)}
-            {renderPrivacySettingRow("Allow connections to view in common connections", privacySettings.allowConnectionToViewInCommon)}
-            {renderPrivacySettingRow("Allow users to search my profile", privacySettings.allowUsersToSearchProfile)}
-            {renderPrivacySettingRow("Allow connections to add me to a group", privacySettings.allowConnectionsToAddMeToGroup)}
-            {renderPrivacySettingRow("By default, allow others in my groups to view my profile", privacySettings.defaultAllowOthersInGroupToViewProfile)}
+            {renderPrivacySettingRow("Default Post Visibility", privacySettings.defaultPostVisibility, "defaultPostVisibility")}
+            {renderPrivacySettingRow("Allow connections to view in common connections", privacySettings.allowConnectionToViewInCommon, "allowConnectionToViewInCommon")}
+            {renderPrivacySettingRow("Allow users to search my profile", privacySettings.allowUsersToSearchProfile, "allowUsersToSearchProfile")}
+            {renderPrivacySettingRow("Allow connections to add me to a group", privacySettings.allowConnectionsToAddMeToGroup, "allowConnectionsToAddMeToGroup")}
+            {renderPrivacySettingRow("By default, allow others in my groups to view my profile", privacySettings.defaultAllowOthersInGroupToViewProfile, "defaultAllowOthersInGroupToViewProfile")}
         </div>
     )
 }
