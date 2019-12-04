@@ -6,7 +6,6 @@ import configureStore from '../configureStore'
 
 import PrivacySettings from './privacySettings/PrivacySettings'
 
-import { users, posts } from './mockData'
 
 const currentUser = users[0];
 
