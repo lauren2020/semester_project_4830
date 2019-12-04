@@ -24,7 +24,7 @@ const ConnectionsList = ({
                 connection,
                 addComment,
                 addLike,
-                userVisiblePosts: connectionPosts[connection.id] //getUserVisiblePostsForConnection(connection.id),
+                userVisiblePosts: connectionPosts[connection.id]
             }}></ConnectionRowItem>
         )
     }

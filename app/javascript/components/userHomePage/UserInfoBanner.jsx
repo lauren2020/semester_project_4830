@@ -12,7 +12,6 @@ const UserInfoBanner = ({
     userConnections,
     userGroups
 }) => {
-    //{user.friends.length}
     const [addPostOpen, setAddPostOpen] = React.useState(false);
     return (
         <div>

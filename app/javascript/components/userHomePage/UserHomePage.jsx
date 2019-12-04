@@ -21,9 +21,6 @@ const UserHomePage = ({
                 userGroups
             }}>   
             </UserInfoBanner>
-            {/* <SearchBar {...{
-
-            }}></SearchBar> */}
         </div>
     )
 }

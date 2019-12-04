@@ -9,7 +9,6 @@ const mapDispatchToProps = dispatch => {
         dispatch(addPost(body))
       },
       addLike: (post_id, user_id) => {
-        //dispatch(addLikeToPost(post))
 
         dispatch(setLoading(true))
         axios.patch(ApiHelper.ADD_LIKE_TO_POST_ENDPOINT(user_id), { post_id })
@@ -23,8 +22,6 @@ const mapDispatchToProps = dispatch => {
         });
       },
       addComment: (comment, post_id, user_id) => {
-        //body, user_id, post_id
-        //dispatch(addCommentToPost(post_id, comment, user_id))
 
         dispatch(setLoading(true))
         axios.patch(ApiHelper.ADD_COMMENT_TO_POST_ENDPOINT(user_id), { post_id, body: comment })

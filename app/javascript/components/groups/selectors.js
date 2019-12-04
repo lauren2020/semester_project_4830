@@ -25,7 +25,7 @@ const getSortedGroups = createSelector(
 
 const getGroupPosts = groupId => createSelector(
     [groupPosts],
-    (posts) => posts //.filter(groups.length > 0)
+    (posts) => posts
 )
 
 const mapStateToProps = state => {
@@ -33,7 +33,7 @@ const mapStateToProps = state => {
     userGroups: getSortedGroups(state),
     currentUser: getCurrentUser(state),
     getGroupPosts,
-    groupPosts: groupPosts(state),//getGroupPosts(state),
+    groupPosts: groupPosts(state),
     userConnections: getUserConnections(state)
   }
 }

@@ -1,8 +1,6 @@
 import React from "react"
 import styles from './styles'
 
-//import { users, groups } from '../mockData'
-
 import { Col, Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 
 const AddPostForm = ({

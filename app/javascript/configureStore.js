@@ -1,5 +1,4 @@
 import { createStore, applyMiddleware, combineReducers } from 'redux';
-import { middleWare, apiReducer, railsActions } from 'redux-rails'
 import { default as thunk } from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import update from 'immutability-helper';
@@ -21,7 +20,13 @@ const initialState = {
     pageFilter: PageFilters.SHOW_ALL,
     userGroups: [],
     userConnections: [],
-    privacySettings: { defaultPostVisibility: "Only Me" },
+    privacySettings: { 
+        defaultPostVisibility: "Only Me",
+        allowConnectionToViewInCommon: "No",
+        allowUsersToSearchProfile: "No",
+        allowConnectionsToAddMeToGroup: "No",
+        defaultAllowOthersInGroupToViewProfile: "No"
+    },
     groupSearchResults: [],
     groupPosts: {},
     connectionPosts: {}

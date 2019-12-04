@@ -9,11 +9,9 @@ class ConnectionsProvider extends React.Component {
   render () {
     const store = configureStore({
       currentUser: this.props.user,
-      userConnections: this.props.connections, //getConnections(currentUser.friends),
+      userConnections: this.props.connections,
       connectionPosts: this.props.connection_posts
-      //userPosts: posts
     });
-    //console.log("USER IN PROPS: " + this.props.user);
     return (
         <Provider store={store}>
             <Connections></Connections>

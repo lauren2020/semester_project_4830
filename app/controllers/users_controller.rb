@@ -149,13 +149,8 @@ class UsersController < ApplicationController
     end
 
     def send_connection_invite_by_username
-        puts params[:invited_username]
-        puts params[:inviting_user_id]
         @invited_user = User.find_by_username(params[:invited_username])
         @inviting_user = User.find_by_id(params[:inviting_user_id])
-
-        puts @invited_user.first_name
-        puts @inviting_user.last_name
 
         invite = {
             invited_user: {
@@ -252,15 +247,8 @@ class UsersController < ApplicationController
         @initiating_user = User.find_by_id(inviting_user_id)
         @accepting_user = User.find_by_id(invited_user_id)
 
-        # connection1 = Connection.new(connection_id: @accepting_user.id, user_id: @initiating_user.id)
-        # connection2 = Connection.new(connection_id: @initiating_user.id, user_id: @accepting_user.id)
-
-        #@connection = @initiating_user.connections.build(:connection_id => @accepting_user.id)
-        puts @initiating_user.first_name
-        puts @accepting_user.first_name
-
-        @initiating_user.connections << @accepting_user #connection1
-        @accepting_user.connections << @initiating_user #connection2
+        @initiating_user.connections << @accepting_user
+        @accepting_user.connections << @initiating_user
 
         if @initiating_user.save && @accepting_user.save
             render json: @accepting_user
@@ -273,15 +261,8 @@ class UsersController < ApplicationController
         @initiating_user = User.find_by_id(params[:user_id])
         @accepting_user = User.find_by_id(params[:id])
 
-        # connection1 = Connection.new(connection_id: @accepting_user.id, user_id: @initiating_user.id)
-        # connection2 = Connection.new(connection_id: @initiating_user.id, user_id: @accepting_user.id)
-
-        #@connection = @initiating_user.connections.build(:connection_id => @accepting_user.id)
-        puts @initiating_user.first_name
-        puts @accepting_user.first_name
-
-        @initiating_user.connections << @accepting_user #connection1
-        @accepting_user.connections << @initiating_user #connection2
+        @initiating_user.connections << @accepting_user
+        @accepting_user.connections << @initiating_user
 
         if @initiating_user.save && @accepting_user.save
             render json: @accepting_user

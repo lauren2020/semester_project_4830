@@ -10,12 +10,6 @@ class GroupsController < ApplicationController
 
     def create
         name, profile_url, user_id = params.values_at :name, :profile_url, :user_id
-        #@new_group = MessageBoard.new(:name => name, :profile_url => profile_url, :user_id => user_id)
-        #:profile_url => profile_url,
-
-        puts "IN CREATE:"
-        puts name
-        puts user_id
         @new_group = Group.new(:name => name, :profile_url => profile_url, :user_id => user_id)
 
         if @new_group.save
@@ -28,7 +22,6 @@ class GroupsController < ApplicationController
     end
 
     def change_profile_image
-        #@group = MessageBoard.find_by_id(params[:id])
         @group = Group.find_by_id(params[:id])
         @group.profile_url = params[:profile_url]
 
@@ -41,19 +34,6 @@ class GroupsController < ApplicationController
 
     def add_member_to_group
         process_add_member_to_group(user_id: params[:user_id], group_id: params[:id])
-        # @user = User.find_by_id(params[:user_id])
-        # @group = Group.find_by_id(params[:id])
-
-        # @user.groups << @group
-        # @group.users << @user
-
-        # if @user.save && @group.save
-        #     render json: @group
-        # else
-        #     render json: {
-        #         error: "There was an error adding member to group!"
-        #     }, status: 422
-        # end
     end
 
     def process_add_member_to_group(user_id, group_id)
@@ -135,7 +115,7 @@ class GroupsController < ApplicationController
         if @group.save && @invited_user.save
             render json: {
                 group: @group
-            }#@group
+            }
         else
             render json: {
                 error: "Unable to send invite."

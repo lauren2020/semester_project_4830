@@ -75,8 +75,6 @@ const Post = ({
                 <p className="postFooterOption" onClick={() => addLike(post.content.id, currentUser.id)}>Likes: {post.content.likes.length} </p>
                 <p>||</p>
                 <p className="postFooterOption" onClick={() => setShowComments(!showComments)}>Comments: {post.comments.length}</p>
-                {/* <p>||</p>
-                <p className="postFooterOption">Remove From Visibility</p> */}
             </div>
             {showComments && renderCommentsSection(post.comments)}
         </div>

@@ -12,8 +12,6 @@ class User < ApplicationRecord
   has_many :groups
   has_and_belongs_to_many :groups
 
-  #has_and_belongs_to_many :users #connections
-
   has_many :connection_associations, :class_name => 'Connection'
   has_many :connections, :through => :connection_associations
 

@@ -14,7 +14,6 @@ Rails.application.routes.draw do
 
   post 'user/:id/privacy_settings', to: 'users#privacy_settings'
   get 'user/:id/privacy_settings', to: 'users#privacy_settings'
-  # resources :users
   resources :posts
 
 

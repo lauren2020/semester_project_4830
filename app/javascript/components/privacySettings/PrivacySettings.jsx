@@ -12,8 +12,6 @@ const PrivacySettingsBase = ({
 }) => {
     console.log(privacySettings)
 
-    //const [currentPrivacySettings, setCurrentPrivacySettings] = React.useState(privacySettings);
-
     const renderPrivacySettingRow = (label, value, setValue) => {
         const [isEditing, setIsEditing] = React.useState(false);
         return (
@@ -53,7 +51,6 @@ const PrivacySettingsBase = ({
     }
 
     const renderDropdownEditMenu = (options) => {
-        //const [dropdownOpen, setDropdownOpen] = React.useState(false);
         const dropdownOpen = false;
         return (
             <ButtonDropdown isOpen={dropdownOpen} toggle={() => setDropdownOpen(!dropdownOpen)}>
@@ -70,10 +67,10 @@ const PrivacySettingsBase = ({
     return (
         <div>
             {renderPrivacySettingRow("Default Post Visibility", privacySettings.defaultPostVisibility)}
-            {renderPrivacySettingRow("Allow connections to view in common connections", "No")}
-            {renderPrivacySettingRow("Allow users to search my profile", "No")}
-            {renderPrivacySettingRow("Allow connections to add me to a group", "No")}
-            {renderPrivacySettingRow("By default, allow others in my groups to view my profile", "No")}
+            {renderPrivacySettingRow("Allow connections to view in common connections", privacySettings.allowConnectionToViewInCommon)}
+            {renderPrivacySettingRow("Allow users to search my profile", privacySettings.allowUsersToSearchProfile)}
+            {renderPrivacySettingRow("Allow connections to add me to a group", privacySettings.allowConnectionsToAddMeToGroup)}
+            {renderPrivacySettingRow("By default, allow others in my groups to view my profile", privacySettings.defaultAllowOthersInGroupToViewProfile)}
         </div>
     )
 }

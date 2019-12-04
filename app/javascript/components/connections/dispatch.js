@@ -38,8 +38,7 @@ const mapDispatchToProps = dispatch => {
         dispatch(setLoading(true))
         axios.patch(ApiHelper.INVITE_USER_TO_CONNECT_BY_USERNAME_ENDPOINT(inviting_user_id), { invited_username: invited_username })
         .then((response) => {
-          //let json = CircularJSON.stringify(response);
-            console.log("SUCCES!");// + response.data);
+            console.log("SUCCES!");
             dispatch(setLoading(false))
         })
         .catch((error) => {
@@ -48,7 +47,6 @@ const mapDispatchToProps = dispatch => {
         });
       },
       addLike: (post_id, user_id) => {
-        //dispatch(addLikeToPost(post))
 
         dispatch(setLoading(true))
         axios.patch(ApiHelper.ADD_LIKE_TO_POST_ENDPOINT(user_id), { post_id })
@@ -62,9 +60,6 @@ const mapDispatchToProps = dispatch => {
         });
       },
       addComment: (comment, post_id, user_id) => {
-        //body, user_id, post_id
-        //dispatch(addCommentToPost(post_id, comment, user_id))
-
         dispatch(setLoading(true))
         axios.patch(ApiHelper.ADD_COMMENT_TO_POST_ENDPOINT(user_id), { post_id, body: comment })
         .then(function (response) {
