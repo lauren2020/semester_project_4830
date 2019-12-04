@@ -135,7 +135,7 @@ class UsersController < ApplicationController
 
     def privacy_settings
         @user = User.find_by_id(params[:id])
-        @privacy_settings = []
+        @privacy_settings = @user.privacy_settings
         
         owned_groups = Group.where(:user_id => @user.id)
         groups_joined = @user.groups
