@@ -1,8 +1,9 @@
 import { createSelector } from 'reselect'
 
-const currentUser = state => state.currentUser
+const getCurrentUser = state => state.currentUser
 const getUserConnections = state => state.userConnections
 const userPosts = state => state.userPosts
+const connectionPosts = state => state.connectionPosts
 
 const getUserVisiblePostsForConnection = (userId) => createSelector(
     [userPosts],
@@ -18,9 +19,10 @@ const mapStateToProps = state => {
   return {
       state,
     userConnections: getVisibleConnections(state),
-    currentUser,
+    currentUser: getCurrentUser(state),
     getUserVisiblePostsForConnection,
-    userPosts
+    userPosts,
+    connectionPosts: connectionPosts(state)
   }
 }
 

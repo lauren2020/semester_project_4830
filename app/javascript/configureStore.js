@@ -1,5 +1,4 @@
 import { createStore, applyMiddleware, combineReducers } from 'redux';
-import { middleWare, apiReducer, railsActions } from 'redux-rails'
 import { default as thunk } from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import update from 'immutability-helper';
@@ -21,9 +20,31 @@ const initialState = {
     pageFilter: PageFilters.SHOW_ALL,
     userGroups: [],
     userConnections: [],
-    privacySettings: { defaultPostVisibility: "Only Me" },
-    groupSearchResults: []
+    privacySettings: { 
+        defaultPostVisibility: "Only Me",
+        allowConnectionToViewInCommon: "No",
+        allowUsersToSearchProfile: "No",
+        allowConnectionsToAddMeToGroup: "No",
+        defaultAllowOthersInGroupToViewProfile: "No"
+    },
+    groupSearchResults: [],
+    groupPosts: {},
+    connectionPosts: {}
 };
+
+function connectionPosts(state = {}, action) {
+    switch (action.type) {
+        default:
+            return state;
+    }
+}
+
+function groupPosts(state = {}, action) {
+    switch (action.type) {
+        default:
+            return state;
+    }
+}
 
 function groupSearchResults(state = [], action) {
     switch (action.type) {
@@ -115,7 +136,9 @@ const rootReducer = combineReducers({
     userGroups,
     userConnections,
     privacySettings,
-    groupSearchResults
+    groupSearchResults,
+    groupPosts,
+    connectionPosts
 })
 
 export default function configureStore(hydratedState = {}) {

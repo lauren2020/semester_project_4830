@@ -4,8 +4,12 @@ import ConnectionRowItem from './ConnectionRowItem'
 import { posts } from '../mockData'
 
 const ConnectionsList = ({
+    currentUser,
     connections,
-    getUserVisiblePostsForConnection
+    getUserVisiblePostsForConnection,
+    addComment,
+    addLike,
+    connectionPosts
 }) => {
 
     const renderConnection = (connection) => {
@@ -16,8 +20,11 @@ const ConnectionsList = ({
 
         return (
             <ConnectionRowItem {...{
+                currentUser,
                 connection,
-                userVisiblePosts: filteredPosts //getUserVisiblePostsForConnection(connection.id),
+                addComment,
+                addLike,
+                userVisiblePosts: connectionPosts[connection.id]
             }}></ConnectionRowItem>
         )
     }

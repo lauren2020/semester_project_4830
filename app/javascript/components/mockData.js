@@ -21,7 +21,7 @@ const phylisPicURL = "https://pbs.twimg.com/profile_images/878985669560991745/R2
 const stanleyPicURL = "https://pbs.twimg.com/media/CA0h5rEWQAA2dwt.jpg";
 const robertPicURL = "https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fewedit.files.wordpress.com%2F2015%2F01%2Fthe-office_320-16.jpg&w=400&c=sc&poi=face&q=85";
 const darylPicURL = "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/darryl-from-the-office-costume-1561739057.jpg?resize=480:*";
-const andyPicURL = "https://formosadiary.files.wordpress.com/2018/06/andy-bernard-e1529936277626.jpg";
+const andyPicURL = "https://formosadiary.files.wordpress.com/2018/06/andy-bernard-e1529936277626.jpg"; 
 
 
 const michael = {id: "0", profile_url: michaelPicURL, first_name: "Michael", last_name: "Scott", posts: ["0"], comments: ["0"], friends: ["1", "2", "3", "4", "5", "6", "7", "9", "10"], pending_connections: ["8"], groups: [group0, group1] };

@@ -6,7 +6,7 @@ class CreatePosts < ActiveRecord::Migration[6.0]
       t.string :title, null: false
       t.text :body, null: false
 
-      t.timestamps
+      t.timestamps 
     end
   end
 end

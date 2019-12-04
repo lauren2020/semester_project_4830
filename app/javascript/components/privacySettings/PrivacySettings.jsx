@@ -8,20 +8,23 @@ import mapStateToProps from './selectors'
 import styles from './styles'
 
 const PrivacySettingsBase = ({
+    currentUser,
+    changePrivacySettings,
     privacySettings
 }) => {
-    console.log(privacySettings)
+    const callChangePrivacySetting = (settings) => {
+        changePrivacySettings(currentUser.id, { defaultPostVisibility: settings.defaultPostVisibility, allowConnectionToViewInCommon: settings.allowConnectionToViewInCommon, allowUsersToSearchProfile: settings.allowUsersToSearchProfile, allowConnectionsToAddMeToGroup: settings.allowConnectionsToAddMeToGroup, defaultAllowOthersInGroupToViewProfile: settings.defaultAllowOthersInGroupToViewProfile } );
+    }
 
-    //const [currentPrivacySettings, setCurrentPrivacySettings] = React.useState(privacySettings);
-
-    const renderPrivacySettingRow = (label, value, setValue) => {
+    const renderPrivacySettingRow = (label, value, key) => {
         const [isEditing, setIsEditing] = React.useState(false);
+        const [newValue, setNewValue] = React.useState("");
         return (
             <div className="settingRow">
                 <h4 className="">{label}: </h4>
                 {isEditing 
                     ? <InputGroup className="settingValueEditing">
-                    <Input placeholder={value} />
+                    <Input value={newValue} onChange={e => setNewValue(e.target.value)} placeholder={value} />
                   </InputGroup>
                   : <p className="settingValue">{value}</p>}
 
@@ -31,6 +34,13 @@ const PrivacySettingsBase = ({
                 }}></BaseDivider>
                 <Button color="warning" className="floatRight" onClick={() => {
                     setIsEditing(!isEditing);
+                    if (isEditing) {
+                        console.log("Key: ", key);
+                        console.log("Value: ", newValue);
+                        let sendValues = {};
+                        sendValues[key] = newValue;
+                        callChangePrivacySetting(sendValues);
+                    }
                 }}>{isEditing ? "Save" : "Edit"}</Button>{' '}
             </div>
         )
@@ -53,7 +63,6 @@ const PrivacySettingsBase = ({
     }
 
     const renderDropdownEditMenu = (options) => {
-        //const [dropdownOpen, setDropdownOpen] = React.useState(false);
         const dropdownOpen = false;
         return (
             <ButtonDropdown isOpen={dropdownOpen} toggle={() => setDropdownOpen(!dropdownOpen)}>
@@ -69,11 +78,11 @@ const PrivacySettingsBase = ({
 
     return (
         <div>
-            {renderPrivacySettingRow("Default Post Visibility", privacySettings.defaultPostVisibility)}
-            {renderPrivacySettingRow("Allow connections to view in common connections", "No")}
-            {renderPrivacySettingRow("Allow users to search my profile", "No")}
-            {renderPrivacySettingRow("Allow connections to add me to a group", "No")}
-            {renderPrivacySettingRow("By default, allow others in my groups to view my profile", "No")}
+            {renderPrivacySettingRow("Default Post Visibility", privacySettings.defaultPostVisibility, "defaultPostVisibility")}
+            {renderPrivacySettingRow("Allow connections to view in common connections", privacySettings.allowConnectionToViewInCommon, "allowConnectionToViewInCommon")}
+            {renderPrivacySettingRow("Allow users to search my profile", privacySettings.allowUsersToSearchProfile, "allowUsersToSearchProfile")}
+            {renderPrivacySettingRow("Allow connections to add me to a group", privacySettings.allowConnectionsToAddMeToGroup, "allowConnectionsToAddMeToGroup")}
+            {renderPrivacySettingRow("By default, allow others in my groups to view my profile", privacySettings.defaultAllowOthersInGroupToViewProfile, "defaultAllowOthersInGroupToViewProfile")}
         </div>
     )
 }
