@@ -12,11 +12,6 @@ const ConnectionsList = ({
 }) => {
 
     const renderConnection = (connection) => {
-        var filteredPosts = posts.filter(function (el) {
-            return el.user.id == connection.id ||
-                   (el.people.length > 0 && el.people[0].id == connection.id);
-          });
-
         return (
             <ConnectionRowItem {...{
                 currentUser,
