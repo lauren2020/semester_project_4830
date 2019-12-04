@@ -13,7 +13,7 @@ class UsersController < ApplicationController
     end
     
     def show_user(id)
-        redirect_to("http://localhost:4000/user/" + id[:id].to_s + "/feed", {})
+        redirect_to("hhttp://ec2-52-201-243-68.compute-1.amazonaws.com/user/" + id[:id].to_s + "/feed", {})
     end
 
     def update
