@@ -6,10 +6,6 @@ import configureStore from '../configureStore'
 
 import PrivacySettings from './privacySettings/PrivacySettings'
 
-import { users, posts } from './mockData'
-
-const currentUser = users[0];
-
 class PrivacySettingsProvider extends React.Component {
   render () {
     const store = configureStore({
