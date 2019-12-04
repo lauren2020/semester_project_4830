@@ -2,8 +2,6 @@ import React from "react"
 import GroupRowItem from './GroupRowItem'
 
 
-import { posts } from '../mockData'
-
 const GroupList = ({
     currentUser,
     groups,

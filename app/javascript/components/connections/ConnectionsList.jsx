@@ -1,7 +1,6 @@
 import React from "react"
 import ConnectionRowItem from './ConnectionRowItem'
 
-import { posts } from '../mockData'
 
 const ConnectionsList = ({
     currentUser,
