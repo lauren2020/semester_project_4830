@@ -6,9 +6,6 @@ import configureStore from '../configureStore'
 
 import PrivacySettings from './privacySettings/PrivacySettings'
 
-
-const currentUser = users[0];
-
 class PrivacySettingsProvider extends React.Component {
   render () {
     const store = configureStore({
