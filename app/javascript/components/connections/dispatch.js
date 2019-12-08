@@ -1,4 +1,4 @@
-import { addPost, setLoading } from '../../actions';
+import { addPost, setLoading, addConnection } from '../../actions';
 import { ApiHelper } from '../ApiHelper'
 import axios from 'axios';
 import CircularJSON from 'circular-json';
@@ -27,6 +27,7 @@ const mapDispatchToProps = dispatch => {
         axios.patch(ApiHelper.ACCEPT_CONNECTION_INVITE_ENDPOINT(invited_user_id), { inviting_user_id })
         .then(function (response) {
             console.log("SUCCES!", response);
+            dispatch(addConnection(response.data));
             dispatch(setLoading(false))
         })
         .catch(function (error) {

@@ -1,4 +1,4 @@
-import { addPost, addLikeToPost, addCommentToPost, setLoading } from '../../actions';
+import { addPost, addLikeToPost, addCommentToPost, setLoading, addComment, addLike } from '../../actions';
 import { ApiHelper } from '../ApiHelper'
 import axios from 'axios';
 
@@ -14,6 +14,7 @@ const mapDispatchToProps = dispatch => {
         axios.patch(ApiHelper.ADD_LIKE_TO_POST_ENDPOINT(user_id), { post_id })
         .then(function (response) {
             console.log("SUCCES!", response);
+            dispatch(addLike(user_id, post_id))
             dispatch(setLoading(false))
         })
         .catch(function (error) {
@@ -27,6 +28,7 @@ const mapDispatchToProps = dispatch => {
         axios.patch(ApiHelper.ADD_COMMENT_TO_POST_ENDPOINT(user_id), { post_id, body: comment })
         .then(function (response) {
             console.log("SUCCES!", response);
+            dispatch(addComment(post_id, response.data))
             dispatch(setLoading(false))
         })
         .catch(function (error) {

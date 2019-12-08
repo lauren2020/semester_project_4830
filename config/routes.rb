@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :user
+  #devise_for :user
   root 'landing#index'
 
   get 'user/:id', to: 'users#show'
