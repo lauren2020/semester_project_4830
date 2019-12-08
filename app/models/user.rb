@@ -1,6 +1,6 @@
 class User < ApplicationRecord
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+  # devise :database_authenticatable, :registerable,
+  #        :recoverable, :rememberable, :validatable
 
   has_many :journal_posts, inverse_of: :user
   has_many :journal_comments, inverse_of: :user
@@ -16,6 +16,12 @@ class User < ApplicationRecord
   has_many :connections, :through => :connection_associations
 
   has_many :posts
+
+  has_secure_password
+
+  def as_json(options = {})
+    super(options.merge({ except: %i[password password_digest] }))
+  end
   
 
   validates :username, uniqueness: true, allow_nil: true

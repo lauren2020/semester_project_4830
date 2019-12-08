@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
     skip_before_action :verify_authenticity_token
+    before_action :authenticate_user, except: [:create, :login, :logout, :map_comments, :map_posts]
 
     def list_all
         @users = User.all
@@ -24,6 +25,8 @@ class UsersController < ApplicationController
         @new_user = User.new(:first_name => first_name, :last_name => last_name, :email => email, :username => username, :password => password, :profile_url => profile_url)
 
         if @new_user.save
+            token = token_manager.generate_token(@new_user.id)
+            cookies.signed['X-Access-Token'] = {value:  token, httponly: true, expires: 2.hour.from_now}
             show_user(:id => @new_user.id)
         else
             render plain: "Error creating user!"
@@ -37,7 +40,8 @@ class UsersController < ApplicationController
     end
 
     def logout
-        redirect_to root_path() #, :action => '/'
+        cookies.signed['X-Access-Token'] = {value:  "", httponly: true}
+        redirect_to root_path()
     end
 
     def map_comments(comments)
@@ -251,7 +255,7 @@ class UsersController < ApplicationController
         @accepting_user.connections << @initiating_user
 
         if @initiating_user.save && @accepting_user.save
-            render json: @accepting_user
+            render json: @initiating_user
         else
             render plain: "There was an error adding connection!"
         end

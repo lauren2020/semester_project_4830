@@ -1,4 +1,4 @@
-import { addPost, createGroup, setLoading } from '../../actions';
+import { addPost, createGroup, setLoading, addGroup } from '../../actions';
 import { ApiHelper } from '../ApiHelper'
 import axios from 'axios';
 
@@ -16,6 +16,7 @@ const mapDispatchToProps = dispatch => {
         axios.post(ApiHelper.CREATE_GROUP_ENDPOINT, { user_id, name, profile_url })
         .then(function (response) {
             console.log("Success! " + response);
+            dispatch(addGroup(response.data))
             dispatch(setLoading(false))
         })
         .catch(function (error) {

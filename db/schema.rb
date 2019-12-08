@@ -10,9 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_04_185109) do
+ActiveRecord::Schema.define(version: 2019_12_07_215313) do
 
   # These are extensions that must be enabled in order to support this database
+  enable_extension "pgcrypto"
   enable_extension "plpgsql"
 
   create_table "comments", force: :cascade do |t|
@@ -146,6 +147,7 @@ ActiveRecord::Schema.define(version: 2019_12_04_185109) do
     t.bigint "shared_postits_id"
     t.bigint "postits_id"
     t.json "privacy_settings", default: {"defaultPostVisibility"=>"Only Me", "allowConnectionToViewInCommon"=>"No", "allowUsersToSearchProfile"=>"No", "allowConnectionsToAddMeToGroup"=>"No", "defaultAllowOthersInGroupToViewProfile"=>"No"}, null: false
+    t.string "password_digest"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["postits_id"], name: "index_users_on_postits_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

@@ -61,7 +61,8 @@ const GroupsBase = ({
                 createGroup,
                 onClose: () => {
                     setShowAddGroup(false)
-                }
+                },
+                connections: userConnections
             }}></AddGroupForm>}
             {showPendingInvites && <div>
                 <h2>Pending Invites</h2>

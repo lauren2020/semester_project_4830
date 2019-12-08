@@ -42,6 +42,19 @@ class PostitsController < ApplicationController
         end
     end
 
+    def map_comment(comment)
+            comment_object = {
+                content: comment,
+                user: {
+                    first_name: comment.user.first_name,
+                    last_name: comment.user.last_name,
+                    profile_url: comment.user.profile_url
+                },
+                date: comment.created_at
+            }
+            return comment_object
+    end
+
     def comment_on_post
         body, user_id, post_id = params.values_at :body, :user_id, :post_id
 
@@ -52,7 +65,7 @@ class PostitsController < ApplicationController
         @post.comments << @comment
 
         if @comment.save && @post.save
-            render json: @comment
+            render json: map_comment(@comment)
         else
             render json: {
                 error: "There was an error adding comment."

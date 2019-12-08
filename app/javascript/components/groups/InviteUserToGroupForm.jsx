@@ -18,7 +18,7 @@ const InviteUserToGroupForm = ({
             <FormGroup row>
                 <Label for="select" sm={2}>User To Invite:</Label>
                 <Col sm={10}>
-                    <Input value={name} onChange={e => setName(e.target.value)} type="select" name="select" id="select"> 
+                    <Input value={selectedUser} onChange={e => setSelectedUser(e.target.value)} type="select" name="select" id="select"> 
                         { userConnections.map( connection => <option>{connection.first_name} {connection.last_name}</option>) }}
                     </Input>
                 </Col>
@@ -32,7 +32,11 @@ const InviteUserToGroupForm = ({
             return
         }
         setShowError(false)
-        inviteUser(group_id, inviting_user_id, selectedUser.id)
+        userConnections.map(connection => {
+            if (connection.first_name + " " + connection.last_name === selectedUser) {
+                inviteUser(group_id, inviting_user_id, connection.id)
+            }
+        })
         onClose()
     }
 
