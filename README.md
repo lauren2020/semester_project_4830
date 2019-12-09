@@ -1,6 +1,6 @@
-# Zerospace
+# ZeroSpace
 This application was created for our Software Engineering semester project.
-* Zerospace is hosted on Amazon EC2
+* ZeroSpace is hosted on Amazon EC2
 * Built with Ruby on Rails with a React frontend
 * Nginx and PostgreSQL used for webserver and database
 
