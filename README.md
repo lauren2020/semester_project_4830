@@ -1,9 +1,17 @@
-Abstract
+# Zerospace
+This application was created for our Software Engineering semester project.
+* Zerospace is hosted on Amazon EC2
+* Built with Ruby on Rails with a React frontend
+* Nginx and PostgreSQL used for webserver and database
+
+## Abstract
+
 Our proposal is to create a social media and blogging platform with a heavy focus on empowering and encouraging user privacy. This platform will have two distinct sections: one for journaling and blogging, and another for public forum engagement. While connected to each other, the amount of interaction between these two sections will be entirely user-controlled. Users will be able to maintain anything from a personal journal, completely cut off from other users, to a small circle of friends, to a fully public blog, all while engaging as much or as little as they like in public discussions; all on a single platform.
 
 To accomplish this, we are developing a robust privacy system, focused on giving users granular control over who can and cannot view and respond to their posts. Users will have similar control over their profiles, making as much or as little information as they like public (no information is required to be shared). While giving users great control, we also are keeping the system intuitive and simple, avoiding confusing submenus and verbiage. We also maintain privacy by minimizing the ways in which people can get information about other users such as avoiding public user searches.
 
-Description
+## Description
+
 We intend to address the increasingly irresponsible handling of personal information by major social media companies. From enabling the spread of personally targeted misinformation campaigns, to enabling bad actors to harass and threaten other users with little to no repercussions, privacy and online safety have become a major issue in modern online life. Protecting personal details has become an afterthought for these companies, in some cases even conflicting with their business model. With these issues in mind, we believe that the best way to address these problems is to provide a way for people to engage online with opt-out privacy rather than opt-in.
 
 We propose ZeroSpace: a website that protects user privacy by default, from the point of first login. A user visiting ZeroSpace is first invited to create an account, requiring only an email address and a password. Once the account has been created and the user has logged in, ZeroSpace directs them to their profile. The user has the ability to fill in as much personal information as they desire (none is required). Note that all information in the profile is private by default, and the user will be able to publicize as much or as little of that information as they desire. Specifically, the user will be able to specify which individuals or groups of people have access to certain information. For example, a user might want to share a post about their birthday with their family but not their coworker, and this could be accomplished with a simple setting change in ZeroSpace. Further, the interface design is simple and clear with no complicated sub menus and confusing conditionals.
